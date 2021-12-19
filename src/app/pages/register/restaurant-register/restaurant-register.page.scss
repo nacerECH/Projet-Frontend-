@@ -1,0 +1,18 @@
+ion-grid {
+  height: 100%;
+
+  ion-row {
+    height: 100%;
+    form {
+      width: 100%;
+    }
+  }
+}
+ion-item {
+  --padding-bottom: 10px;
+  // --border-color: var(--ion-color-grey-text-color);
+  // --color: var(--ion-color-grey-text-color); // invalid underline color
+  // --highlight-color-invalid: red; // invalid underline color
+  // --highlight-color-valid: green; // valid underline color
+  // --highlight-color: var(--ion-color-main-yellow);
+}

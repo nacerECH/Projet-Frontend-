@@ -1,20 +1,36 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> Bienvenue </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-padding-horizontal">
+      <ion-col>
+        <ion-button
+          [routerLink]="['/client-register']"
+          expand="full"
+          color="main-yellow"
+          size="large"
+          class="ion-margin-vertical"
+          >Creer un compte</ion-button
+        >
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+        <ion-item-divider class="ion-margin-bottom">
+          <ion-label class="ion-text-center"> Ou </ion-label>
+        </ion-item-divider>
+        <!-- Default Note -->
+        <ion-note>Vous avez deja un compte</ion-note>
+        <ion-button
+          [routerLink]="['/login']"
+          size="large"
+          expand="full"
+          color="primary"
+          class="ion-margin-vertical"
+          >Se connecter</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

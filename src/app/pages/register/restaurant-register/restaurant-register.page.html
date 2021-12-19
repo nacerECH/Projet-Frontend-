@@ -1,9 +1,86 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>restaurant-register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Créer un compte restaurant</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding-vertical">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-padding-horizontal">
+      <form>
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Nom restaurant</ion-label
+          >
+          <ion-input type="text" required></ion-input>
+        </ion-item>
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Nom gerant</ion-label
+          >
+          <ion-input type="text" required></ion-input>
+        </ion-item>
 
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Prenom gerant</ion-label
+          >
+          <ion-input type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Email</ion-label
+          >
+          <ion-input type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Description</ion-label
+          >
+          <ion-textarea auto-grow="true" rows="5"></ion-textarea>
+        </ion-item>
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Adresse</ion-label
+          >
+          <ion-textarea rows="3"></ion-textarea>
+        </ion-item>
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Ville</ion-label
+          >
+          <ion-input type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Mot de passe</ion-label
+          >
+          <ion-input type="password" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Confirmer mot de passe</ion-label
+          >
+          <ion-input type="password" required></ion-input>
+        </ion-item>
+
+        <ion-row class="ion-margin-vertical">
+          <ion-col>
+            <ion-button type="submit" color="main-yellow" expand="full"
+              >Sign Up</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-row>
+  </ion-grid>
 </ion-content>
