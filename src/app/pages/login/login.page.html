@@ -22,19 +22,23 @@
 
   <form>
     <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
+      <ion-label position="floating" color="grey-text-color" >Email</ion-label>
       <ion-input type="text" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Password</ion-label>
+      <ion-label position="floating" color="grey-text-color" >Password</ion-label>
       <ion-input type="password" required></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="main-yellow" expand="block">Sign In</ion-button>
+        <ion-button type="submit" color="main-yellow" expand="block">Sign In</ion-button><br>
+     <div id="create">  <a [routerLink]="['/client-register']"  class="small-text">Creer un compte</a></div>
+
       </ion-col>
     </ion-row>
+
+
   </form>
 </ion-content>
