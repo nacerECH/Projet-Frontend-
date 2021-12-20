@@ -2,8 +2,78 @@
   <ion-toolbar>
     <ion-title>favorite-restaurants</ion-title>
   </ion-toolbar>
+
+<ion-toolbar>
+  <ion-segment  (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="friends">
+      <ion-label>lrs restaurants</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="enemies">
+      <ion-label>les plats</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+</ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+
+
+
+  <article class="leaderboard" >
+
+
+    <main class="leaderboard__profiles" *ngIf="selectedSegment === 'friends'" select-on-focus  >
+      <article class="leaderboard__profile">
+        <img src="assets/restau.jpg" alt="" class="leaderboard__picture">
+        <span class="leaderboard__name">Tasty</span>
+        <span class="leaderboard__value">5<span>X</span></span>
+      </article>
+
+      <article class="leaderboard__profile">
+        <img src="assets/restau.jpg" alt="" class="leaderboard__picture">
+        <span class="leaderboard__name">Pollos </span>
+        <span class="leaderboard__value">4.5<span>X</span></span>
+      </article>
+
+      <article class="leaderboard__profile">
+        <img src="assets/restau.jpg" alt="" class="leaderboard__picture">
+        <span class="leaderboard__name">Snack X</span>
+        <span class="leaderboard__value">4<span>X</span></span>
+      </article>
+
+
+
+      <article class="leaderboard__profile">
+        <img src="assets/restau.jpg" alt="" class="leaderboard__picture">
+        <span class="leaderboard__name">Evan Spiegel</span>
+        <span class="leaderboard__value">2<span>X</span></span>
+      </article>
+    </main>
+
+    <main class="leaderboard__profiles" *ngIf="selectedSegment === 'enemies'"   >
+      <article class="leaderboard__profile">
+        <img src="assets/hamburger.jpg" alt="" class="leaderboard__picture">
+        <span class="leaderboard__name">Hamburger</span>
+        <span class="leaderboard__value">35.7<span>DH</span></span>
+      </article>
+
+      <article class="leaderboard__profile">
+        <img src="assets/hamburger.jpg" alt="" class="leaderboard__picture">
+        <span class="leaderboard__name">Pizza</span>
+        <span class="leaderboard__value">15.0<span>DH</span></span>
+      </article>
+
+      <article class="leaderboard__profile">
+        <img src="assets/hamburger.jpg" alt="" class="leaderboard__picture">
+        <span class="leaderboard__name">Tacos</span>
+        <span class="leaderboard__value">20<span>DH</span></span>
+      </article>
+
+
+
+    </main>
+  </article>
 
 </ion-content>
