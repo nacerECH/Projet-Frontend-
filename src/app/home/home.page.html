@@ -1,34 +1,54 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title> Bienvenue </ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar> </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div id="icon-image">
+    <ion-thumbnail class="ion-margin-bottom">
+      <ion-img src="./assets/undraw_welcome_re_h3d9.svg"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-margin-top">
+      <h2>Bienvenue sur Los Pollos</h2>
+    </ion-label>
+  </div>
   <ion-grid>
     <ion-row class="ion-align-items-center ion-padding-horizontal">
-      <ion-col>
+      <ion-col
+        style="display: flex"
+        class="ion-justify-content-center ion-align-items-center"
+      >
         <ion-button
           [routerLink]="['/client-register']"
-          expand="full"
+          class="ion-text-capitalize yellow"
+          type="submit"
           color="main-yellow"
-          size="large"
-          class="ion-margin-vertical"
-          >Creer un compte</ion-button
+          expand="block"
+          shape="round"
+          strong="true"
+          >S'inscrire</ion-button
         >
+      </ion-col>
 
-        <ion-item-divider class="ion-margin-bottom">
-          <ion-label class="ion-text-center"> Ou </ion-label>
-        </ion-item-divider>
-        <!-- Default Note -->
-        <ion-note>Vous avez deja un compte</ion-note>
+      <ion-col>
+        <ion-item lines="none" class="">
+          <ion-label class="ion-text-center">
+            Vous avez deja un compte ?
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col
+        style="display: flex"
+        class="ion-justify-content-center ion-align-items-center"
+      >
         <ion-button
           [routerLink]="['/login']"
-          size="large"
-          expand="full"
-          color="primary"
-          class="ion-margin-vertical"
-          >Se connecter</ion-button
+          class="ion-text-capitalize black"
+          type="submit"
+          color="dark-yellow"
+          expand="block"
+          shape="round"
+          strong="true"
+          >Se Connecter</ion-button
         >
       </ion-col>
     </ion-row>

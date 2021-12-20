@@ -1,14 +1,21 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title class="ion-text-center">Créer un compte utilisateur</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-grid>
+<ion-content class="ion-padding-vertical">
+  <div id="icon-image">
+    <ion-thumbnail class="ion-margin-bottom">
+      <ion-img src="./assets/undraw_healthy_options_sdo3.svg"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-margin-top">
+      <h2>Devenez un client</h2>
+    </ion-label>
+  </div>
+  <ion-grid class="ion-margin-top">
     <ion-row class="ion-align-items-center ion-padding-horizontal">
       <form>
         <ion-item lines="full" class="ionic-margin-bottom">
@@ -43,14 +50,18 @@
           >
           <ion-input type="password" required></ion-input>
         </ion-item>
-
         <ion-row class="ion-margin-vertical">
-          <ion-col>
+          <ion-col
+            style="display: flex"
+            class="ion-justify-content-center ion-align-items-center"
+          >
             <ion-button
+              class="ion-text-capitalize"
               type="submit"
-              size="large"
               color="main-yellow"
-              expand="full"
+              expand="block"
+              shape="round"
+              strong="true"
               >Sign Up</ion-button
             >
           </ion-col>

@@ -1,8 +1,5 @@
 ion-grid {
-  height: 100%;
-
   ion-row {
-    height: 100%;
     form {
       width: 100%;
     }
@@ -10,9 +7,27 @@ ion-grid {
 }
 ion-item {
   --padding-bottom: 10px;
-  // --border-color: var(--ion-color-grey-text-color);
-  // --color: var(--ion-color-grey-text-color); // invalid underline color
-  // --highlight-color-invalid: red; // invalid underline color
-  // --highlight-color-valid: green; // valid underline color
-  // --highlight-color: var(--ion-color-main-yellow);
+}
+
+#icon-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 30vh;
+}
+
+ion-thumbnail {
+  height: 20vh;
+  width: auto;
+}
+
+ion-button {
+  width: 80%;
+  margin-top: 10%;
+  margin-bottom: 20%;
+  --border-color: #000;
+  --border-radius: 20px;
+  --border-style: solid;
+  --border-width: 2px;
 }
