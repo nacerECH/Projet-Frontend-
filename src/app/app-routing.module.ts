@@ -57,7 +57,8 @@ const routes: Routes = [
   },
   {
     path: 'restaurant-dashboard',
-    loadChildren: () => import('./pages/restaurant/restaurant-dashboard/restaurant-dashboard.module').then(m => m.RestaurantDashboardPageModule)
+    loadChildren: () => import('./pages/restaurant/restaurant-dashboard/restaurant-dashboard.module')
+      .then(m => m.RestaurantDashboardPageModule)
   },
   {
     path: 'restaurant-menu',
@@ -65,7 +66,8 @@ const routes: Routes = [
   },
   {
     path: 'restaurant-statistics',
-    loadChildren: () => import('./pages/restaurant/restaurant-statistics/restaurant-statistics.module').then(m => m.RestaurantStatisticsPageModule)
+    loadChildren: () => import('./pages/restaurant/restaurant-statistics/restaurant-statistics.module')
+      .then(m => m.RestaurantStatisticsPageModule)
   },
   {
     path: 'restaurant-profile',
@@ -77,7 +79,8 @@ const routes: Routes = [
   },
   {
     path: 'restaurant-pending-page',
-    loadChildren: () => import('./pages/register/restaurant-pending-page/restaurant-pending-page.module').then(m => m.RestaurantPendingPagePageModule)
+    loadChildren: () => import('./pages/register/restaurant-pending-page/restaurant-pending-page.module')
+      .then(m => m.RestaurantPendingPagePageModule)
   },
 ];
 
