@@ -19,38 +19,7 @@
     transition: all .2s ease-in-out;
    margin-right: 10px;
 
-    i {
-      color: #DF3796;
-      font-size: 20px;
-      padding-right: 10px;
-      transition: all .3s ease-in-out;
-    }
-    span {
-      font-family: "Roboto", sans-serif;
-      align-self: center;
-      transform: translateX(0px);
-      transition: all .1s ease-in-out;
-      opacity: 1;
-     }
 
-   &:hover {
-    transform: scale(1.1);
-    background: linear-gradient(to right, #ff3019 0%,#c90477 100%);
-    box-shadow: 0px 10px 30px rgba(0,0,0,0.10);
-      i {
-        transform: translateX(45px);
-        padding-right: 0;
-        color: #FFF;
-      }
-      span {
-        transform: translateX(30px);
-        opacity: 0;
-      }
-    }
-   &:active {
-     transform: scale(1);
-     box-shadow: 0px 2px 10px rgba(0,0,0,0.10);
-   }
 }
 
 .btn-f {
@@ -61,39 +30,8 @@
     color: #286ED6;
     display: flex;
     transition: all .2s ease-in-out;
+    margin-right: 10px;
 
-    i {
-      color: #286ED6;
-      font-size: 20px;
-      padding-right: 10px;
-      transition: all .3s ease-in-out;
-    }
-    span {
-      font-family: "Roboto", sans-serif;
-      align-self: center;
-      transform: translateX(0px);
-      transition: all .1s ease-in-out;
-      opacity: 1;
-     }
 
-   &:hover {
-    transform: scale(1.1);
-    background-color: #286ED6;
-    box-shadow: 0px 10px 30px rgba(0,0,0,0.10);
-      i {
-        transform: translateX(45px);
-        padding-right: 0;
-        color: #FFF;
-      }
-      span {
-        transform: translateX(30px);
-        opacity: 0;
-      }
-    }
-   &:active {
-     transform: scale(1);
-     box-shadow: 0px 2px 10px rgba(0,0,0,0.10);
-   }
 }
-
 
