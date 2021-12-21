@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RestaurantProfilePageRoutingModule } from './restaurant-profile-routing.module';
 
 import { RestaurantProfilePage } from './restaurant-profile.page';
+import { SocialMediaIconsComponentComponent } from 'src/app/social-media-icons-component/social-media-icons-component.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { RestaurantProfilePage } from './restaurant-profile.page';
     IonicModule,
     RestaurantProfilePageRoutingModule
   ],
-  declarations: [RestaurantProfilePage]
+  declarations: [RestaurantProfilePage,SocialMediaIconsComponentComponent]
 })
 export class RestaurantProfilePageModule {}
