@@ -14,3 +14,18 @@ body {
   min-height: 100vh;
   overflow-x: hidden
 }
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+$max-img-width: 600px;
+$max-img-height: 400px;
+
+img {
+  max-width: 100%;
+  vertical-align: top;
+}
