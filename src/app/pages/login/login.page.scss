@@ -1,13 +1,9 @@
-// #im{
-
-// margin-left: 30%;
-// margin-right: 30%;
-// margin-top: 10%;
-// }
-// #create{
-//   text-align: center;
-// }
-
+ion-header {
+  height: 10vh;
+}
+ion-content {
+  height: 90vh;
+}
 form {
   width: 100%;
 }
@@ -17,14 +13,13 @@ ion-item {
 }
 
 #icon-image {
-  margin-top: 10vh;
+  // margin-top: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: 30vh;
+  height: 30vh;
 }
-
 ion-thumbnail {
   height: 20vh;
   width: auto;
