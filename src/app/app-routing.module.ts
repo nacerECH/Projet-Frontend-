@@ -85,7 +85,15 @@ const routes: Routes = [
   {
     path: 'main-register',
     loadChildren: () => import('./pages/register/main-register/main-register.module').then(m => m.MainRegisterPageModule)
+  },  {
+    path: 'restaurant-plats',
+    loadChildren: () => import('./pages/restaurant/restaurant-plats/restaurant-plats.module').then( m => m.RestaurantPlatsPageModule)
   },
+  {
+    path: 'restaurant-plats-details',
+    loadChildren: () => import('./pages/restaurant/restaurant-plats-details/restaurant-plats-details.module').then( m => m.RestaurantPlatsDetailsPageModule)
+  },
+
 ];
 
 @NgModule({
