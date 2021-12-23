@@ -66,7 +66,8 @@ const routes: Routes = [
 
   // {
   //   path: 'restaurant-plats-edit',
-  //   loadChildren: () => import('./pages/restaurant/restaurant-plats-edit/restaurant-plats-edit.module').then( m => m.RestaurantPlatsEditPageModule)
+  //   loadChildren: () => import('./pages/restaurant/restaurant-plats-edit/restaurant-plats-edit.module')
+  //.then( m => m.RestaurantPlatsEditPageModule)
   // },
 
   // {
@@ -98,7 +99,6 @@ const routes: Routes = [
   //   loadChildren: () => import('./pages/register/main-register/main-register.module').then(m => m.MainRegisterPageModule)
   // },
 ];
->>>>>>> 5d13b15fe87df48f090ca467ab804cde4149e2e8
 
 @NgModule({
   imports: [
