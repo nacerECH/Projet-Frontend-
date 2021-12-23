@@ -1,0 +1,71 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-vertical">
+
+  <ion-grid class="ion-margin-top">
+    <ion-row class="ion-align-items-center ion-padding-horizontal">
+      <form>
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+          >Photo category </ion-label
+        ><br>
+
+          <ion-input type="file" accept="jpg " required > </ion-input>
+        </ion-item>
+
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Nom category </ion-label
+          >
+          <ion-input type="text" required></ion-input>
+
+        </ion-item>
+
+
+
+
+
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Description</ion-label
+          >
+          <ion-textarea auto-grow="true" rows="5"></ion-textarea>
+        </ion-item>
+
+
+
+
+
+
+
+
+
+        <ion-row class="ion-margin-vertical">
+          <ion-col
+            style="display: flex"
+            class="ion-justify-content-center ion-align-items-center"
+          >
+            <ion-button
+              class="ion-text-capitalize"
+              type="submit"
+              color="main-yellow"
+              expand="block"
+              shape="round"
+              strong="true"
+              >Ajouter</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-row>
+  </ion-grid>
+</ion-content>

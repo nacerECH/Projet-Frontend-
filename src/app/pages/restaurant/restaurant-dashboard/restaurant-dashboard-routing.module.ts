@@ -24,6 +24,16 @@ const routes: Routes = [
       .then(m => m.RestaurantMenuPageModule)
   },
   {
+    path: 'plats',
+    loadChildren: () => import('../restaurant-plats/restaurant-plats.module')
+      .then(m => m.RestaurantPlatsPageModule)
+  },
+  {
+    path: 'plats-details',
+    loadChildren: () => import('../restaurant-plats-details/restaurant-plats-details.module')
+      .then(m => m.RestaurantPlatsDetailsPageModule)
+  },
+  {
     path: 'statistics',
     loadChildren: () => import('../restaurant-statistics/restaurant-statistics.module')
       .then(m => m.RestaurantStatisticsPageModule)

@@ -7,9 +7,9 @@ ion-header {
   }
 }
 ion-content {
-  --background: var(--ion-color-light-grey-color);
+  --background: var(#ffff);
   ion-list {
-    background-color: var(--ion-color-light-grey-color) !important;
+    background-color: var(#ffff) !important;
     display: grid;
     row-gap: 8px;
     ion-item {
@@ -64,3 +64,5 @@ ion-content {
     }
   }
 }
+
+

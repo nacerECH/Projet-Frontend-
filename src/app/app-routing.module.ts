@@ -62,7 +62,11 @@ const routes: Routes = [
     path: 'restaurant', /**restaurant-dashboard */
     loadChildren: () => import('./pages/restaurant/restaurant-dashboard/restaurant-dashboard.module')
       .then(m => m.RestaurantDashboardPageModule)
+  },  {
+    path: 'add-category',
+    loadChildren: () => import('./pages/restaurant/add-category/add-category.module').then( m => m.AddCategoryPageModule)
   },
+
 
   // {
   //   path: 'restaurant-plats-edit',
