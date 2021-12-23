@@ -1,0 +1,96 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-vertical">
+
+  <ion-grid class="ion-margin-top">
+    <ion-row class="ion-align-items-center ion-padding-horizontal">
+      <form>
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+          >Photos plats </ion-label
+        ><br>
+
+          <ion-input type="file" accept="jpg " required > </ion-input>
+        </ion-item>
+
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Nom plats </ion-label
+          >
+          <ion-input type="text" required></ion-input>
+
+        </ion-item>
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Prix</ion-label
+          >
+          <ion-input type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Prix promo</ion-label
+          >
+          <ion-input type="text" required></ion-input>
+        </ion-item>
+
+
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Description</ion-label
+          >
+          <ion-textarea auto-grow="true" rows="5"></ion-textarea>
+        </ion-item>
+
+
+
+
+
+
+
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label>Souce Algerienne</ion-label>
+          <ion-checkbox color="primary" > </ion-checkbox>
+          </ion-item>
+         <ion-item>
+          <ion-label>Kitchup</ion-label>
+          <ion-checkbox color="primary" >  </ion-checkbox>
+         </ion-item>
+         <ion-item>
+          <ion-label>Soda</ion-label>
+          <ion-checkbox color="primary" > </ion-checkbox>
+         </ion-item>
+         <ion-item>
+           <ion-label>Coca</ion-label>
+           <ion-checkbox color="primary" >  </ion-checkbox>
+          </ion-item>
+
+        <ion-row class="ion-margin-vertical">
+          <ion-col
+            style="display: flex"
+            class="ion-justify-content-center ion-align-items-center"
+          >
+            <ion-button
+              class="ion-text-capitalize"
+              type="submit"
+              color="main-yellow"
+              expand="block"
+              shape="round"
+              strong="true"
+              >Editer</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-row>
+  </ion-grid>
+</ion-content>

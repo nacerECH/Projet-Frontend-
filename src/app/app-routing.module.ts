@@ -93,6 +93,10 @@ const routes: Routes = [
     path: 'restaurant-plats-details',
     loadChildren: () => import('./pages/restaurant/restaurant-plats-details/restaurant-plats-details.module').then( m => m.RestaurantPlatsDetailsPageModule)
   },
+  {
+    path: 'restaurant-plats-edit',
+    loadChildren: () => import('./pages/restaurant/restaurant-plats-edit/restaurant-plats-edit.module').then( m => m.RestaurantPlatsEditPageModule)
+  },
 
 ];
 

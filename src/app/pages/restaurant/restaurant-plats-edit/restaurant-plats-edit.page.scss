@@ -1,0 +1,25 @@
+ion-grid {
+  height: 100%;
+
+  ion-row {
+    height: 100%;
+    form {
+      width: 100%;
+    }
+  }
+}
+ion-item {
+  --padding-bottom: 10px;
+
+}
+
+
+ion-button {
+  width: 80%;
+  margin-top: 10%;
+  margin-bottom: 20%;
+  --border-color: #000;
+  --border-radius: 8px;
+  --border-style: solid;
+  --border-width: 2px;
+}
