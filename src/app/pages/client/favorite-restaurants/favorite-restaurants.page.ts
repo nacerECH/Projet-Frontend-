@@ -8,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class FavoriteRestaurantsPage implements OnInit {
 
 
- public selectedSegment: string;
+  public selectedSegment: string;
   constructor() { }
 
   ngOnInit() {
+    this.selectedSegment = 'restaurants';
   }
-  segmentChanged(event: any){
-this.selectedSegment=event.target.value;
+  segmentChanged(event: any) {
+    this.selectedSegment = event.target.value;
   }
 
 }
