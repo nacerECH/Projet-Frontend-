@@ -66,6 +66,10 @@ const routes: Routes = [
     path: 'add-category',
     loadChildren: () => import('./pages/restaurant/add-category/add-category.module').then( m => m.AddCategoryPageModule)
   },
+  {
+    path: 'res-clients',
+    loadChildren: () => import('./pages/restaurant/res-clients/res-clients.module').then( m => m.ResClientsPageModule)
+  },
 
 
   // {
