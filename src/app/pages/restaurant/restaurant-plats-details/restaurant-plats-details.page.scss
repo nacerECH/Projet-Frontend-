@@ -1,88 +1,173 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+// *,
+// *::before,
+// *::after {
+//   box-sizing: border-box;
+//   padding: 0;
+//   margin: 0;
+// }
 
+// .container {
+//   display: flex;
+//   justify-content: center;
+//   max-width: 1200px;
+//   margin-block: 2rem;
+//   gap: 2rem;
+// }
 
+// img {
+//   max-width: 100%;
+//   display: block;
+//   object-fit: cover;
+// }
 
-.container {
-  display: flex;
-  justify-content: center;
-  max-width: 1200px;
-  margin-block: 2rem;
-  gap: 2rem;
-}
+// .card {
+//   display: flex;
+//   flex-direction: column;
+//   width: clamp(20rem, calc(20rem + 2vw), 22rem);
+//   overflow: hidden;
+//   box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+//   border-radius: 1em;
+//   background: #ECE9E6;
+// background: linear-gradient(to right, #FFFFFF, #ECE9E6);
 
-img {
-  max-width: 100%;
-  display: block;
-  object-fit: cover;
-}
+// }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  width: clamp(20rem, calc(20rem + 2vw), 22rem);
-  overflow: hidden;
-  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
-  border-radius: 1em;
-  background: #ECE9E6;
-background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+// .card__body {
+//   padding: 1rem;
+//   display: flex;
+//   flex-direction: column;
+//   gap: .5rem;
+// }
 
-}
+// .tag {
+//   align-self: flex-start;
+//   padding: .25em .75em;
+//   border-radius: 1em;
+//   font-size: 28px;
+// }
 
+// .tag-brown {
+//   background: #e72727;
+//   color: #fdfdfd;
+// }
 
+// .card__body h4 {
+//   font-size: 1.5rem;
+//   text-transform: capitalize;
+// }
 
-.card__body {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
+// .test {
+//   float: right;
+//   margin-top: 5%;
+//   margin-right: 8%;
 
+// }
 
-.tag {
-  align-self: flex-start;
-  padding: .25em .75em;
-  border-radius: 1em;
-  font-size: 28px;
-}
-
-
-
-
-
-.tag-brown {
-  background: #e72727;
-  color: #fdfdfd;
-}
-
-
-
-.card__body h4 {
-  font-size: 1.5rem;
-  text-transform: capitalize;
-}
-
-
-
-.test {
-  float: right;
-  margin-top: 5%;
-  margin-right: 8%;
-
-
-}
-
-
-.card__header{
-  display:inline-block;
-  position:relative;
+// .card__header{
+//   display:inline-block;
+//   position:relative;
+//   }
+ion-content {
+  // --background: var(--ion-color-light-grey-color);
+  ion-item.description {
+    font-size: 1rem;
+    // --background: var(--ion-color-light-grey-color);
   }
+}
+ion-slides {
+  height: 100vw;
+  ion-item {
+    height: 100%;
+    width: 100%;
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    ion-img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+.details-content {
+  transform: translateY(-5vh);
+  z-index: 2;
+  position: relative;
+  background-color: #fff;
+  border-radius: 10% 10% 0 0;
+  margin-bottom: 10vh;
 
+  .meal-name {
+    padding-top: 2vh;
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+  .accompat {
+    header {
+      color: var(--ion-color-grey-text-color);
+    }
+    .accompat-elt-name {
+      font-size: 0.9rem;
+    }
+    .accompat-elt-qte {
+      vertical-align: middle;
+      height: 100%;
+    }
+    .accompat-elt-btns {
+      border-radius: 50%;
+      --box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 10px 3px;
+      width: 35px;
+      height: 35px;
+      --border-radius: 50%;
+      background-color: var(--ion-color-light-grey-color);
+      --background: var(--ion-color-light-grey-color);
+      --background-hover: var(--ion-color-light-grey-color);
+      --color: #000;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  }
+}
+ion-fab {
+  width: 100%;
+  bottom: 0;
+  height: 8vh;
+  ion-button {
+    margin: auto;
+    height: 90%;
+    width: 90%;
+    label {
+      color: #fff;
+      display: block;
+      width: 70%;
+      float: left;
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    label.price {
+      font-weight: 600;
+      float: right;
+      width: 30%;
+    }
+  }
+}
 
+// .meal-name {
+//   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+//   // box-shadow: rgba(0, 0, 0, 0.45) 0px 5px 20px;
+//   height: 8vh;
+//   // background: var(--ion-color-main-yellow);
+//   background-color: #fff;
+//   color: #000;
+//   h1 {
+//     font-size: 1rem;
+//     margin: 0;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     height: 100%;
+//     width: 100%;
+//   }
+// }

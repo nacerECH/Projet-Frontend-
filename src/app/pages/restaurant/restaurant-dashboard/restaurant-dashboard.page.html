@@ -1,15 +1,14 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>restaurant-dashboard</ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-grid>
     <ion-row class="">
       <ion-col size="6">
-        <ion-card [routerLink]="['nearby']" class="ion-no-margin">
+        <ion-card [routerLink]="['orders']" class="ion-no-margin">
           <div>
             <ion-img src="assets/to-do-list.png"></ion-img>
           </div>
@@ -19,7 +18,7 @@
         </ion-card>
       </ion-col>
       <ion-col size="6">
-        <ion-card [routerLink]="['orders-history']" class="ion-no-margin">
+        <ion-card [routerLink]="['menu']" class="ion-no-margin">
           <div>
             <ion-img src="assets/menu.png"></ion-img>
           </div>
@@ -29,19 +28,19 @@
         </ion-card>
       </ion-col>
       <ion-col size="6">
-        <ion-card [routerLink]="['favorite-restaurants']" class="ion-no-margin">
+        <ion-card [routerLink]="['reviews']" class="ion-no-margin">
           <div>
-            <ion-img src="assets/rating.png"></ion-img>
+            <ion-img src="assets/rate.png"></ion-img>
           </div>
           <div class="project-name">
-            <p class="ion-text-center"  >Rating</p>
+            <p class="ion-text-center">Rating</p>
           </div>
         </ion-card>
       </ion-col>
       <ion-col size="6">
-        <ion-card class="ion-no-margin">
+        <ion-card [routerLink]="['statistics']" class="ion-no-margin">
           <div>
-            <ion-img src="assets/trend.png"></ion-img>
+            <ion-img src="assets/bar-chart.png"></ion-img>
           </div>
           <div class="project-name">
             <p class="ion-text-center">Statistiques</p>
@@ -51,10 +50,10 @@
       <ion-col size="6">
         <ion-card class="ion-no-margin">
           <div>
-            <ion-img src="assets/teamwork.png"></ion-img>
+            <ion-img src="assets/customer.png"></ion-img>
           </div>
           <div class="project-name">
-            <p class="ion-text-center">Les Clients</p>
+            <p class="ion-text-center">Clients</p>
           </div>
         </ion-card>
       </ion-col>
@@ -70,5 +69,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>

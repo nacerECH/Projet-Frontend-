@@ -1,12 +1,11 @@
 ion-content {
-  --background: #ffff;
+  --background: var(--ion-color-light-grey-color);
   height: 87vh;
 }
 ion-header {
   height: 13vh;
   display: flex;
-  align-items: flex-end;
-  background-color: white;
+  align-items: center;
   ion-title {
     font-size: 1.5rem;
   }
@@ -25,13 +24,12 @@ ion-grid {
       height: 50vw;
 
       ion-card {
-        --background: rgb(61, 59, 59);
         height: 100%;
-        border-radius: 5%;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         ion-img {
           height: 80px;
@@ -41,7 +39,10 @@ ion-grid {
         p {
           font-size: 0.9rem;
           font-weight: bold;
-          color: #ffd243;
+          color: #000;
+        }
+        .project-name {
+          margin-top: 2vh;
         }
 
         &:hover {

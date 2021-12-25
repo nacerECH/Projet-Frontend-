@@ -1,57 +1,113 @@
-<ion-header >
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Pizzas </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/restaurant"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Menu</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-
-
-  <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+<ion-content class="ion-padding-vertical">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="main-yellow">
-      <ion-icon  name="add-outline"></ion-icon>
+      <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
-  <br><br>
-
-
-
   <ion-grid>
     <ion-row class="">
-
-      <ion-col size="4">
-        <ion-card class="ion-no-margin">
-            <ion-img src="assets/pizzas.jpg"></ion-img>
-
-            <div class="card-title" style="margin-top: 8px;  font-size: small; margin: 4px;" >Pizza Dinde</div>
-
+      <ion-col size="6">
+        <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+          <ion-card-content class="ion-no-padding">
+            <ion-img
+              src="assets/side-view-pizza-with-chopped-pepper-board-cookware(1).jpg"
+            >
+            </ion-img>
+          </ion-card-content>
+          <ion-card-header class="ion-text-center ion-no-padding">
+            <ion-card-subtitle>Pizza</ion-card-subtitle>
+            <!-- <ion-card-title>Card Title</ion-card-title> -->
+          </ion-card-header>
         </ion-card>
       </ion-col>
-      <ion-col size="4">
-        <ion-card class="ion-no-margin">
-          <ion-img src="assets/hamburger2.jpg"></ion-img>
-          <div class="card-title"  style="margin-top: 8px; font-size: small; margin: 4px;" >Pizza Viande hachee</div>
-
-      </ion-card>
+      <ion-col size="6">
+        <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+          <ion-card-content class="ion-no-padding">
+            <ion-img src="assets/pexels-pixabay-357756.jpg"> </ion-img>
+          </ion-card-content>
+          <ion-card-header class="ion-text-center ion-no-padding">
+            <ion-card-subtitle>Shushi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
       </ion-col>
-      <ion-col size="4">
-        <ion-card class="ion-no-margin">
-          <ion-img src="assets/pizzas.jpg"></ion-img>
-          <div class="card-title"  style="margin-top: 8px; font-size: small; margin: 4px ;"   > Pizza chef</div>
-
-      </ion-card>
+      <ion-col size="6">
+        <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+          <ion-card-content class="ion-no-padding">
+            <ion-img src="assets/pexels-nadezhda-moryak-4409273.jpg"> </ion-img>
+          </ion-card-content>
+          <ion-card-header class="ion-text-center ion-no-padding">
+            <ion-card-subtitle>Burger</ion-card-subtitle>
+            <!-- <ion-card-title>Card Title</ion-card-title> -->
+          </ion-card-header>
+        </ion-card>
       </ion-col>
-      <ion-col size="4">
-        <ion-card class="ion-no-margin">
-          <ion-img src="assets/pizzas.jpg"></ion-img>
-          <div class="card-title"  style="margin-top: 8px;  font-size: small; margin: 4px;">Pizza margarita</div>
-
-      </ion-card>
+      <ion-col size="6">
+        <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+          <ion-card-content class="ion-no-padding">
+            <ion-img src="assets/pexels-geraud-pfeiffer-6605338.jpg"> </ion-img>
+          </ion-card-content>
+          <ion-card-header class="ion-text-center ion-no-padding">
+            <ion-card-subtitle>Sandwich</ion-card-subtitle>
+            <!-- <ion-card-title>Card Title</ion-card-title> -->
+          </ion-card-header>
+        </ion-card>
       </ion-col>
-
+      <ion-col size="6">
+        <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+          <ion-card-content class="ion-no-padding">
+            <ion-img src="assets/pexels-los-muertos-crew-8448333.jpg">
+            </ion-img>
+          </ion-card-content>
+          <ion-card-header class="ion-text-center ion-no-padding">
+            <ion-card-subtitle>Tacos</ion-card-subtitle>
+            <!-- <ion-card-title>Card Title</ion-card-title> -->
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+          <ion-card-content class="ion-no-padding">
+            <ion-img src="assets/pexels-sharon-mccutcheon-1407346.jpg">
+            </ion-img>
+          </ion-card-content>
+          <ion-card-header class="ion-text-center ion-no-padding">
+            <ion-card-subtitle>Donuts</ion-card-subtitle>
+            <!-- <ion-card-title>Card Title</ion-card-title> -->
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+          <ion-card-content class="ion-no-padding">
+            <ion-img src="assets/pexels-olenka-sergienko-3323682.jpg">
+            </ion-img>
+          </ion-card-content>
+          <ion-card-header class="ion-text-center ion-no-padding">
+            <ion-card-subtitle>Drinks</ion-card-subtitle>
+            <!-- <ion-card-title>Card Title</ion-card-title> -->
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+          <ion-card-content class="ion-no-padding">
+            <ion-img src="assets/pexels-vlada-karpovich-6947293.jpg"> </ion-img>
+          </ion-card-content>
+          <ion-card-header class="ion-text-center ion-no-padding">
+            <ion-card-subtitle>Desserts</ion-card-subtitle>
+            <!-- <ion-card-title>Card Title</ion-card-title> -->
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>

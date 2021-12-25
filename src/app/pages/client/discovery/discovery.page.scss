@@ -5,7 +5,7 @@ ion-content {
 ion-header {
   height: 13vh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   ion-title {
     font-size: 1.5rem;
   }
@@ -29,6 +29,7 @@ ion-grid {
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         ion-img {
           height: 80px;
@@ -39,6 +40,9 @@ ion-grid {
           font-size: 0.9rem;
           font-weight: bold;
           color: #000;
+        }
+        .project-name {
+          margin-top: 2vh;
         }
 
         &:hover {

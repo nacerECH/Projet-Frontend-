@@ -56,7 +56,15 @@ const routes: Routes = [
   {
     path: 'restaurant-plats-edit',
     loadChildren: () => import('../../restaurant/restaurant-plats-edit/restaurant-plats-edit.module')
-    .then( m => m.RestaurantPlatsEditPageModule)
+      .then(m => m.RestaurantPlatsEditPageModule)
+  },
+  {
+    path: 'add-category',
+    loadChildren: () => import('../../restaurant/add-category/add-category.module').then(m => m.AddCategoryPageModule)
+  },
+  {
+    path: 'res-clients',
+    loadChildren: () => import('../../restaurant/res-clients/res-clients.module').then(m => m.ResClientsPageModule)
   },
 
 
