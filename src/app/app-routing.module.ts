@@ -36,7 +36,15 @@ const routes: Routes = [
   {
     path: 'client' /**discovery */,
     loadChildren: () => import('./pages/client/discovery/discovery.module').then(m => m.DiscoveryPageModule)
+
   },
+
+  {
+    path: 'restaurant', /**restaurant-dashboard */
+    loadChildren: () => import('./pages/restaurant/restaurant-dashboard/restaurant-dashboard.module')
+      .then(m => m.RestaurantDashboardPageModule)
+  },
+
   // {
   //   path: 'client-support',
   //   loadChildren: () => import('./pages/client/client-support/client-support.module').then(m => m.ClientSupportPageModule)
@@ -58,11 +66,7 @@ const routes: Routes = [
   //   loadChildren: () => import('./pages/restaurant/restaurant-support/restaurant-support.module')
   //.then(m => m.RestaurantSupportPageModule)
   // },
-  {
-    path: 'restaurant', /**restaurant-dashboard */
-    loadChildren: () => import('./pages/restaurant/restaurant-dashboard/restaurant-dashboard.module')
-      .then(m => m.RestaurantDashboardPageModule)
-  },
+
 
 
 
@@ -81,6 +85,7 @@ const routes: Routes = [
   //   loadChildren: () => import('./pages/restaurant/restaurant-statistics/restaurant-statistics.module')
   //     .then(m => m.RestaurantStatisticsPageModule)
   // },
+
   // {
   //   path: 'restaurant-profile',
   //   loadChildren: () => import('./pages/restaurant/restaurant-profile/restaurant-profile.module')

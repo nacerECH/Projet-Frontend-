@@ -8,6 +8,8 @@ import { RestaurantStatisticsPageRoutingModule } from './restaurant-statistics-r
 
 import { RestaurantStatisticsPage } from './restaurant-statistics.page';
 
+import { StatisticComponentComponent } from 'src/app/Components/statistic-component/statistic-component.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { RestaurantStatisticsPage } from './restaurant-statistics.page';
     IonicModule,
     RestaurantStatisticsPageRoutingModule
   ],
-  declarations: [RestaurantStatisticsPage]
+  declarations: [RestaurantStatisticsPage,StatisticComponentComponent]
 })
 export class RestaurantStatisticsPageModule {}
