@@ -25,19 +25,19 @@ export class StatisticComponentComponent implements OnInit {
       categories: ['Lundi', 'Mardi', 'Mercredi', 'Joudi', 'Vendredi', 'Samedi', 'Dimanche'],
       tickmarkPlacement: 'on',
       title: {
-          enabled: false
+        enabled: false
       }
-  },
+    },
     series: [{
       name: 'cette Semaine',
       data: [50, 30, 12, 40, 46, 37, 88]
-  }, {
+    }, {
       name: 'Semaine derniere',
       data: [10, 14, 7, 18, 10, 13, 24]
-  }, {
+    }, {
       name: 'Semaine avant derniere',
       data: [7, 15, 14, 17, 14, 6, 17]
-  }]
+    }]
   };
 
   constructor() { }
