@@ -43,7 +43,11 @@ const routes: Routes = [
     path: 'restaurant', /**restaurant-dashboard */
     loadChildren: () => import('./pages/restaurant/restaurant-dashboard/restaurant-dashboard.module')
       .then(m => m.RestaurantDashboardPageModule)
+  },  {
+    path: 'client-restaurant',
+    loadChildren: () => import('./pages/client/client-restaurant/client-restaurant.module').then( m => m.ClientRestaurantPageModule)
   },
+
 
   // {
   //   path: 'client-support',
