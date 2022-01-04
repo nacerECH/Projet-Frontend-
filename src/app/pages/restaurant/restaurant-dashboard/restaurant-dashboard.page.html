@@ -1,22 +1,14 @@
-<ion-menu side="start" menuId="first">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Start Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-title class="ion-text-center">Dashboard</ion-title>
+    <div
+      class="popover-button ion-no-padding ion-text-center"
+      (click)="presentPopover($event)"
+      slot="end"
+      lines="none"
+    >
+      <img src="assets/user.svg" alt="photo de profile" />
+    </div>
   </ion-toolbar>
 </ion-header>
 

@@ -1,6 +1,14 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-title>Discovery</ion-title>
+    <div
+      class="popover-button ion-no-padding ion-text-center"
+      (click)="presentPopover($event)"
+      slot="end"
+      lines="none"
+    >
+      <img src="assets/user.svg" alt="photo de profile" />
+    </div>
   </ion-toolbar>
 </ion-header>
 

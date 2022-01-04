@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ClientGuard } from 'src/app/guards/client/client.guard';
 
 import { DiscoveryPage } from './discovery.page';
 

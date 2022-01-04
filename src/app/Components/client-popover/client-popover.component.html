@@ -1,0 +1,44 @@
+<ion-item lines="none">
+  <div>
+    <div style="width: 100%" class="ion-text-center username">
+      <ion-label>Azziti Hamza</ion-label>
+    </div>
+    <div style="width: 100%" class="ion-text-center email">
+      <ion-label>azziti2000@gmail.com</ion-label>
+    </div>
+  </div>
+</ion-item>
+<ion-list class="ion-margin-top">
+  <ion-item class="ion-text-center">
+    <ion-icon
+      class="ion-no-margin"
+      slot="start"
+      name="person-outline"
+    ></ion-icon>
+    <ion-label>Profile</ion-label>
+  </ion-item>
+  <ion-item class="ion-text-center">
+    <ion-icon
+      class="ion-no-margin"
+      slot="start"
+      name="settings-outline"
+    ></ion-icon>
+    <ion-label>Parametres</ion-label>
+  </ion-item>
+  <ion-item (click)="logOut()" class="ion-text-center">
+    <ion-icon
+      class="ion-no-margin"
+      slot="start"
+      name="log-out-outline"
+    ></ion-icon>
+    <ion-label>Deconnexion</ion-label>
+  </ion-item>
+  <ion-item lines="none" (click)="close()" class="ion-text-center">
+    <ion-icon
+      class="ion-no-margin"
+      slot="start"
+      name="close-outline"
+    ></ion-icon>
+    <ion-label>Fermer</ion-label>
+  </ion-item>
+</ion-list>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +13,10 @@ import { ClientRegisterPage } from './client-register.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ClientRegisterPageRoutingModule
+    ClientRegisterPageRoutingModule,
+    ReactiveFormsModule,
+
   ],
   declarations: [ClientRegisterPage]
 })
-export class ClientRegisterPageModule {}
+export class ClientRegisterPageModule { }

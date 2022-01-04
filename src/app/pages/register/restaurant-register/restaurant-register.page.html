@@ -17,67 +17,182 @@
   </div>
   <ion-grid class="ion-margin-top">
     <ion-row class="ion-align-items-center ion-padding-horizontal">
-      <form>
+      <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Nom restaurant</ion-label
           >
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            formControlName="nomRestaurant"
+            id="nomRestaurant"
+            name="nomRestaurant"
+            type="text"
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.nomRestaurant.errors?.required"
+          >
+            Le Nom de restaurant est obligatoire
+          </span>
         </ion-item>
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Nom gerant</ion-label
           >
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            formControlName="nomGerant"
+            id="nomGerant"
+            name="nomGerant"
+            type="text"
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.nomGerant.errors?.required"
+          >
+            Le Nom du gerant est obligatoire
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Prenom gerant</ion-label
           >
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            formControlName="prenomGerant"
+            id="prenomGerant"
+            name="prenomGerant"
+            type="text"
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.prenomGerant.errors?.required"
+          >
+            Le Prenom du gerant est obligatoire
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Email</ion-label
           >
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            formControlName="email"
+            id="email"
+            name="email"
+            type="text"
+            required
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.email.errors?.required"
+          >
+            L'adresse email est obligatoire
+          </span>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.email.errors?.pattern"
+          >
+            L'adresse email doit avoir une fromat valide
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Description</ion-label
           >
-          <ion-textarea auto-grow="true" rows="5"></ion-textarea>
+          <ion-textarea
+            formControlName="description"
+            id="description"
+            name="description"
+            auto-grow="true"
+            rows="5"
+          ></ion-textarea>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.description.errors?.required"
+          >
+            La Description de la restaurante est obligatoire
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Adresse</ion-label
           >
-          <ion-textarea rows="3"></ion-textarea>
+          <ion-textarea
+            formControlName="adresse"
+            id="adresse"
+            name="adresse"
+            rows="3"
+          ></ion-textarea>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.adresse.errors?.required"
+          >
+            L'adresse de la restaurante est obligatoire
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Ville</ion-label
           >
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            formControlName="ville"
+            id="ville"
+            name="ville"
+            type="text"
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.ville.errors?.required"
+          >
+            La ville est obligatoire
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Mot de passe</ion-label
           >
-          <ion-input type="password" required></ion-input>
+          <ion-input
+            formControlName="password"
+            id="password"
+            name="password"
+            type="password"
+            required
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.password.errors?.required"
+          >
+            Le Mot de passe est obligatoire.
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Confirmer mot de passe</ion-label
           >
-          <ion-input type="password" required></ion-input>
+          <ion-input
+            formControlName="confirmPassword"
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            required
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.confirmPassword.errors?.required"
+          >
+            La Confirmation du mot de passe est obligatoire.
+          </span>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.confirmPassword.errors?.matching"
+          >
+            Le Mot de passe et la confirmation doivent etre identique.
+          </span>
         </ion-item>
 
         <ion-row class="ion-margin-vertical">
@@ -86,7 +201,6 @@
             class="ion-justify-content-center ion-align-items-center"
           >
             <ion-button
-              [routerLink]="['../../restaurant']"
               class="ion-text-capitalize"
               type="submit"
               color="main-yellow"

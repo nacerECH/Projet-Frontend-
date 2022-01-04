@@ -17,38 +17,119 @@
   </div>
   <ion-grid class="ion-margin-top">
     <ion-row class="ion-align-items-center ion-padding-horizontal">
-      <form>
+      <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating">Nom</ion-label>
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            name="last_name"
+            id="last_name"
+            type="text"
+            formControlName="lName"
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.lName.errors?.required"
+          >
+            Le Nom est obligatoire
+          </span>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.lName.errors?.minLength"
+          >
+            Le Nom doit avoir 3 caractere en minimum
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Prenom</ion-label
           >
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            name="first_name"
+            id="first_name"
+            type="text"
+            formControlName="fName"
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.fName.errors?.required"
+          >
+            Le Prenom est obligatoire
+          </span>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.fName.errors?.minLength"
+          >
+            Le Prenom doit avoir 3 caractere en minimum
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Email</ion-label
           >
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            formControlName="email"
+            id="email"
+            name="email"
+            type="text"
+            required
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.email.errors?.required"
+          >
+            L'adresse email est obligatoire
+          </span>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.email.errors?.pattern"
+          >
+            L'adresse email doit avoir une fromat valide
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Mot de passe</ion-label
           >
-          <ion-input type="password" required></ion-input>
+          <ion-input
+            formControlName="password"
+            id="password"
+            name="confirmPassword"
+            type="password"
+            required
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.password.errors?.required"
+          >
+            Le Mot de passe est obligatoire.
+          </span>
         </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Confirmer mot de passe</ion-label
           >
-          <ion-input type="password" required></ion-input>
+          <ion-input
+            formControlName="confirmPassword"
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.confirmPassword.errors?.required"
+          >
+            La Confirmation du mot de passe est obligatoire.
+          </span>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.confirmPassword.errors?.matching"
+          >
+            Le Mot de passe et la confirmation doivent etre identique.
+          </span>
         </ion-item>
         <ion-row class="ion-margin-vertical">
           <ion-col
@@ -62,7 +143,7 @@
               expand="block"
               shape="round"
               strong="true"
-              >Sign Up</ion-button
+              >S'inscrire</ion-button
             >
           </ion-col>
         </ion-row>

@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeGuard } from '../guards/home.guard';
 import { HomePage } from './home.page';
 
 const routes: Routes = [
   {
     path: '',
     component: HomePage,
+
   },
   {
     path: 'login',
-    loadChildren: () => import('../pages/login/login.module').then(m => m.LoginPageModule)
+    loadChildren: () => import('../pages/login/login.module').then(m => m.LoginPageModule),
+
   },
   {
     path: 'client-register',

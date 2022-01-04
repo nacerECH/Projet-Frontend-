@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RestaurantGuard } from 'src/app/guards/restaurant/restaurant.guard';
 
 import { RestaurantDashboardPage } from './restaurant-dashboard.page';
 
@@ -7,6 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: RestaurantDashboardPage,
+
   },
   {
     path: 'orders',
