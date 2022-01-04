@@ -30,7 +30,11 @@ const routes: Routes = [
   },
   {
     path: 'nearby',
-    loadChildren: () => import('..//nearby/nearby.module').then(m => m.NearbyPageModule)
+    loadChildren: () => import('../nearby/nearby.module').then(m => m.NearbyPageModule)
+  },
+  {
+    path: 'restaurants',
+    loadChildren: () => import('../client-restaurant/client-restaurant.module').then(m => m.ClientRestaurantPageModule)
   },
 
 

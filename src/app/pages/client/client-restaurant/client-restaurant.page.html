@@ -1,0 +1,170 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>restaurant-profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="row py-5 px-4">
+    <div class="col-md-5 mx-auto">
+      <!-- Profile widget -->
+      <div class="bg-white shadow rounded overflow-hidden">
+        <div class="px-4 pt-0 pb-4 cover">
+          <div class="media align-items-end profile-head">
+            <div class="profile mr-3">
+              <img
+                src="assets/restau.jpg"
+                alt="..."
+                width="130"
+                class="rounded mb-2 img-thumbnail"
+              />
+              <a href="#" class="btn btn-outline-dark btn-sm btn-block"
+                >Edit profile</a
+              >
+            </div>
+            <div class="media-body mb-5 text-white">
+              <h4 class="mt-0 mb-0">Mark Williams</h4>
+              <p class="small mb-4">
+                <i class="fas fa-map-marker-alt mr-2"></i>New York
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <br /><br />
+        <div class="py-4 px-4">
+          <div class="d-flex align-items-center justify-content-between mb-3" >
+            <ion-slides class="" pager="true">
+              <ion-slide style="height:80px;" >
+                <ion-item lines="none">
+                  <ion-img
+                    src="assets/side-view-pizza-with-chopped-pepper-board-cookware(1).jpg"
+                  ></ion-img>
+                </ion-item>
+              </ion-slide>
+              <ion-slide  style="height:80px;">
+                <ion-item lines="none">
+                  <ion-img src="assets/pexels-pixabay-357756.jpg"></ion-img>
+                </ion-item>
+              </ion-slide>
+              <ion-slide  style="height:80px;">
+                <ion-item lines="none" >
+                  <ion-img src="assets/pexels-nadezhda-moryak-4409273.jpg"></ion-img>
+                </ion-item>
+              </ion-slide>
+            </ion-slides>
+          </div>
+          <ion-grid>
+            <ion-row class="">
+              <ion-col size="6">
+                <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+                  <ion-card-content class="ion-no-padding">
+                    <ion-img
+                      src="assets/side-view-pizza-with-chopped-pepper-board-cookware(1).jpg"
+                    >
+                    </ion-img>
+                  </ion-card-content>
+                  <ion-card-header class="ion-text-center ion-no-padding">
+                    <ion-card-subtitle>Pizza</ion-card-subtitle>
+                    <!-- <ion-card-title>Card Title</ion-card-title> -->
+                  </ion-card-header>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6">
+                <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+                  <ion-card-content class="ion-no-padding">
+                    <ion-img src="assets/pexels-pixabay-357756.jpg"> </ion-img>
+                  </ion-card-content>
+                  <ion-card-header class="ion-text-center ion-no-padding">
+                    <ion-card-subtitle>Shushi</ion-card-subtitle>
+                  </ion-card-header>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6">
+                <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+                  <ion-card-content class="ion-no-padding">
+                    <ion-img src="assets/pexels-nadezhda-moryak-4409273.jpg"> </ion-img>
+                  </ion-card-content>
+                  <ion-card-header class="ion-text-center ion-no-padding">
+                    <ion-card-subtitle>Burger</ion-card-subtitle>
+                    <!-- <ion-card-title>Card Title</ion-card-title> -->
+                  </ion-card-header>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6">
+                <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+                  <ion-card-content class="ion-no-padding">
+                    <ion-img src="assets/pexels-geraud-pfeiffer-6605338.jpg"> </ion-img>
+                  </ion-card-content>
+                  <ion-card-header class="ion-text-center ion-no-padding">
+                    <ion-card-subtitle>Sandwich</ion-card-subtitle>
+                    <!-- <ion-card-title>Card Title</ion-card-title> -->
+                  </ion-card-header>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6">
+                <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+                  <ion-card-content class="ion-no-padding">
+                    <ion-img src="assets/pexels-los-muertos-crew-8448333.jpg">
+                    </ion-img>
+                  </ion-card-content>
+                  <ion-card-header class="ion-text-center ion-no-padding">
+                    <ion-card-subtitle>Tacos</ion-card-subtitle>
+                    <!-- <ion-card-title>Card Title</ion-card-title> -->
+                  </ion-card-header>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6">
+                <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+                  <ion-card-content class="ion-no-padding">
+                    <ion-img src="assets/pexels-sharon-mccutcheon-1407346.jpg">
+                    </ion-img>
+                  </ion-card-content>
+                  <ion-card-header class="ion-text-center ion-no-padding">
+                    <ion-card-subtitle>Donuts</ion-card-subtitle>
+                    <!-- <ion-card-title>Card Title</ion-card-title> -->
+                  </ion-card-header>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6">
+                <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+                  <ion-card-content class="ion-no-padding">
+                    <ion-img src="assets/pexels-olenka-sergienko-3323682.jpg">
+                    </ion-img>
+                  </ion-card-content>
+                  <ion-card-header class="ion-text-center ion-no-padding">
+                    <ion-card-subtitle>Drinks</ion-card-subtitle>
+                    <!-- <ion-card-title>Card Title</ion-card-title> -->
+                  </ion-card-header>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6">
+                <ion-card [routerLink]="['../plats']" class="ion-no-margin">
+                  <ion-card-content class="ion-no-padding">
+                    <ion-img src="assets/pexels-vlada-karpovich-6947293.jpg"> </ion-img>
+                  </ion-card-content>
+                  <ion-card-header class="ion-text-center ion-no-padding">
+                    <ion-card-subtitle>Desserts</ion-card-subtitle>
+                    <!-- <ion-card-title>Card Title</ion-card-title> -->
+                  </ion-card-header>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+
+          <h6><b>Addresse :</b></h6>
+          <p>fes 22 rue youssef bno tachfine</p>
+          <h6><b>Description :</b></h6>
+          <p>la cuisine japonaise</p>
+          <h6><b> Nom gerant :</b> Gaustavo fring</h6>
+
+          <h6><b> Tel :</b> 0657813456</h6>
+
+          <app-social-media-icons-component></app-social-media-icons-component>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
