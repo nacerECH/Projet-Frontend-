@@ -296,6 +296,14 @@
   --ion-color-grey-text-color-shade: #7a797e;
   --ion-color-grey-text-color-tint: #97969a;
 
+  //green-text-color
+  --ion-color-grenn-text-color: #86a6a6;
+  --ion-color-grenn-text-color-rgb: 0, 0, 0;
+  --ion-color-grenn-text-color-contrast: #ffffff;
+  --ion-color-grenn-text-color-contrast-rgb: 255, 255, 255;
+  --ion-color-grenn-text-color-shade: #000000;
+  --ion-color-grenn-text-color-tint: #1a1a1a;
+
   // dark-yellow
 
   --ion-color-dark-yellow: #222428;
@@ -409,6 +417,14 @@
   --ion-color-contrast-rgb: var(--ion-color-grey-text-color-contrast-rgb);
   --ion-color-shade: var(--ion-color-grey-text-color-shade);
   --ion-color-tint: var(--ion-color-grey-text-color-tint);
+}
+.ion-color-grenn-text-color {
+  --ion-color-base: var(--ion-color-grenn-text-color);
+  --ion-color-base-rgb: var(--ion-color-grenn-text-color-rgb);
+  --ion-color-contrast: var(--ion-color-grenn-text-color-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-grenn-text-color-contrast-rgb);
+  --ion-color-shade: var(--ion-color-grenn-text-color-shade);
+  --ion-color-tint: var(--ion-color-grenn-text-color-tint);
 }
 // ion-toolbar {
 //   --background: #f2f2f4;

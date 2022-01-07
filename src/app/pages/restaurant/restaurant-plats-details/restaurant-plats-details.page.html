@@ -1,63 +1,12 @@
-<!-- <ion-header  class="ion-no-border">
-  <ion-toolbar>
-    <ion-title>restaurant-plats-details</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-  <ion-fab vertical="top" horizontal="end" edge slot="fixed">
-    <ion-fab-button color="main-yellow">
-      <ion-icon name="create-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-<br>
-
-  <div class="container">
-
-    <div class="card">
-      <div class="card__header">
-        <img src="assets/pizzas.jpg" alt="card__image" class="card__image" width="600">
-
-      </div>
-      <div class="card__body">
-        <table> <tr>  <td> <h4>Pizza Dinde </h4> </td>  <td> <span class="tag tag-brown">-30%</span>   </td> </tr> </table>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
-
-      <h4>  Prix : 40 DH</h4>
-      <h6> Les accompats :  </h6>
-      <ion-list>
-        <ion-item>
-          <ion-label>Souce algerienne</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Soda </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label> Kitchup </ion-label>
-        </ion-item>
-
-      </ion-list>
-      </div>
-
-
-    </div>
-
-  </div>
-
-
-
-
-</ion-content> -->
-<!-- <ion-header class="ion-no-border">
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/restaurant"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header> -->
-<ion-content>
+</ion-header>
+
+<ion-content fullscreen="true">
   <ion-slides class="" pager="true">
     <ion-slide>
       <ion-item lines="none">
@@ -150,7 +99,12 @@
     </div>
   </div>
   <ion-fab vertical="bottom" slot="fixed">
-    <ion-button expand="full" shape="round" color="main-yellow"  (click)="showPrompt()">
+    <ion-button
+      expand="full"
+      shape="round"
+      color="main-yellow"
+      (click)="showPrompt()"
+    >
       <label class="ion-text-start">Acheter</label>
       <label class="price ion-text-end"> 95 MAD </label>
     </ion-button>

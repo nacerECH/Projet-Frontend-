@@ -1,37 +1,78 @@
-.profile-head {
-  transform: translateY(5rem)
+ion-content {
+  // top: -44px;
+
+  ion-item.description {
+    font-size: 1rem;
+  }
 }
-
-.cover {
-  background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
-  background-size: cover;
-  background-repeat: no-repeat
+ion-content.md {
+  top: -56px;
 }
-
-body {
-  background: #654ea3;
-  background: linear-gradient(to right, #e96443, #904e95);
-  min-height: 100vh;
-  overflow-x: hidden
+ion-content.ios {
+  top: -40px;
 }
-
-
-
-
-* {
-  box-sizing: border-box;
+ion-slides {
+  height: 100vw;
+  ion-item {
+    height: 100%;
+    width: 100%;
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    ion-img {
+      height: 100%;
+      width: 100%;
+    }
+  }
 }
+.details-content {
+  transform: translateY(-6vh);
+  z-index: 2;
+  position: relative;
+  background-color: #fff;
+  border-radius: 7% 7% 0 0;
 
-$max-img-width: 600px;
-$max-img-height: 400px;
-
-img {
-  max-width: 100%;
-  vertical-align: top;
+  .meal-name {
+    padding-top: 2vh;
+    min-height: 64px;
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+  .description {
+    font-size: 0.9rem;
+  }
+  ion-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  ion-note {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
 }
-
-
-
-
-
-
+ion-fab {
+  width: 100%;
+  bottom: 0;
+  height: 60px;
+  ion-button {
+    margin: auto;
+    height: 90%;
+    width: 90%;
+    label {
+      display: block;
+      width: 70%;
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+}
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}
+ion-header {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}
