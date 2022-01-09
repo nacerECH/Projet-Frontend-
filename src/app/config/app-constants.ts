@@ -6,6 +6,7 @@ export class AppConstants {
   public static readonly logout = 'logout';
   // eslint-disable-next-line @typescript-eslint/naming-convention
   public static readonly imageDir = 'stored-images';
+  public static readonly addMenu = 'menus';
 
 
 

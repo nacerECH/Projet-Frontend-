@@ -10,6 +10,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { HttpService } from 'src/app/services/http.service';
+
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-category',
@@ -28,7 +31,8 @@ export class AddCategoryPage implements OnInit {
     private toastService: ToastService,
     public formBuilder: FormBuilder,
     private router: Router,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private httpService: HttpService
   ) { }
 
   get errorControl() {
@@ -40,7 +44,8 @@ export class AddCategoryPage implements OnInit {
     // this.loadFiles();
     this.ionicForm = this.formBuilder.group({
       titre: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+      image: ['', Validators.required],
+      description: [],
     });
   }
   emptyDirectory() {
@@ -103,6 +108,8 @@ export class AddCategoryPage implements OnInit {
       path: filePath,
       data: `data:image/jpeg;base64,${readFile.data}`,
     };
+    this.ionicForm.controls.image.setValue('set');
+
   }
   async selectImage() {
     const image = await Camera.getPhoto({
@@ -171,7 +178,64 @@ export class AddCategoryPage implements OnInit {
       path: file.path
     });
     this.loadFiles();
-    this.toastService.presentToast('Fichier supprimer');
+    this.toastService.presentToast('Image supprimer');
+
+  }
+
+  // Convert the base64 to blob data
+  // and create  formData with it
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  async startUpload(file: LocalFile) {
+    const response = await fetch(file.data);
+    const blob = await response.blob();
+    const formData = new FormData();
+    formData.append('file', blob, file.name);
+    formData.append('nom', this.ionicForm.controls['titre'].value);
+    formData.append('description', this.ionicForm.controls['description'].value);
+    // this.ionicForm.patchValue({ file: formData });
+    this.uploadData(formData);
+    // console.log(formData);
+  }
+
+  // Upload the formData to our API
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  async uploadData(formData: FormData) {
+
+
+    (await (this.httpService.authPost(AppConstants.addMenu, formData))).subscribe((res: any) => {
+      if (res.success) {
+        // this.router.navigate(['home']);
+        console.log(res);
+
+      }
+    },
+      (error: any) => {
+        console.log(error);
+        console.log('Network Issue.');
+      });
+
+
+
+  }
+
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  async submitForm() {
+    this.isSubmitted = true;
+    if (!this.ionicForm.valid) {
+      console.log('Please provide all the required values!');
+      return false;
+    } else {
+      // console.log(this.ionicForm.value);
+      const loading = await this.loadingCtrl.create({
+        message: 'Chargement en cours...',
+      });
+      await loading.present();
+      const result = await this.startUpload(this.images);
+      await loading.dismiss();
+
+    }
   }
 
 }
+
+

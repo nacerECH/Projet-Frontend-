@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -44,7 +45,10 @@ export class HttpService {
     return this.http.post(url, data, {
       headers: new HttpHeaders(
         {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          // eslint-disable-next-line quote-props
           'Authorization': `Bearer ${this.token}`,
+          // eslint-disable-next-line quote-props
           'Accept': 'application/json'
         })
     }

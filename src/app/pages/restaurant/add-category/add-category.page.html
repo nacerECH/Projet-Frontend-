@@ -9,7 +9,7 @@
 <ion-content class="ion-padding-vertical">
   <ion-grid class="ion-margin-top">
     <ion-row class="ion-align-items-center ion-padding-horizontal">
-      <form [formGroup]="ionicForm" novalidate>
+      <form [formGroup]="ionicForm" novalidate (ngSubmit)="submitForm()">
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Nom category
@@ -21,6 +21,12 @@
             type="text"
           >
           </ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.titre.errors?.required"
+          >
+            Le nom est obligatoire
+          </span>
         </ion-item>
 
         <ion-item class="ionic-margin-bottom">
@@ -28,15 +34,23 @@
             >Description</ion-label
           >
           <ion-textarea
-            formControlName="titre"
-            id="titre"
-            name="titre"
+            formControlName="description"
+            id="description"
+            name="description"
             type="text"
             auto-grow="true"
             rows="5"
           ></ion-textarea>
         </ion-item>
-
+        <ion-item lines="none">
+          <input type="hidden" formControlName="image" />
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.image.errors?.required"
+          >
+            Une image est obligatoire
+          </span>
+        </ion-item>
         <ion-item
           lines="none"
           class="ion-margin-top ion-margin-horizontal ion-padding-horizontal"
@@ -60,6 +74,7 @@
               <ion-icon slot="end" name="camera"></ion-icon>
               {{ images === null ? 'Choisir image' : 'Changer image' }}
             </ion-button>
+            <!-- Disabled Checkbox -->
           </div>
         </ion-item>
 
