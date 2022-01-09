@@ -7,47 +7,79 @@
 </ion-header>
 
 <ion-content class="ion-padding-vertical">
-
   <ion-grid class="ion-margin-top">
     <ion-row class="ion-align-items-center ion-padding-horizontal">
-      <form>
-
+      <form [formGroup]="ionicForm" novalidate>
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
-          >Photo category </ion-label
-        ><br>
-
-          <ion-input type="file" accept="jpg " required > </ion-input>
-        </ion-item>
-
-
-        <ion-item lines="full" class="ionic-margin-bottom">
-          <ion-label color="grey-text-color" position="floating"
-            >Nom category </ion-label
+            >Nom category
+          </ion-label>
+          <ion-input
+            formControlName="titre"
+            id="titre"
+            name="titre"
+            type="text"
           >
-          <ion-input type="text" required></ion-input>
-
+          </ion-input>
         </ion-item>
 
-
-
-
-
-
-        <ion-item lines="full" class="ionic-margin-bottom">
+        <ion-item class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Description</ion-label
           >
-          <ion-textarea auto-grow="true" rows="5"></ion-textarea>
+          <ion-textarea
+            formControlName="titre"
+            id="titre"
+            name="titre"
+            type="text"
+            auto-grow="true"
+            rows="5"
+          ></ion-textarea>
         </ion-item>
 
+        <ion-item
+          lines="none"
+          class="ion-margin-top ion-margin-horizontal ion-padding-horizontal"
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              width: 100%;
+            "
+          >
+            <ion-button
+              class="ion-text-center"
+              fill="clear"
+              expand="full"
+              color="primary"
+              (click)="selectImage()"
+            >
+              <ion-icon slot="end" name="camera"></ion-icon>
+              {{ images === null ? 'Choisir image' : 'Changer image' }}
+            </ion-button>
+          </div>
+        </ion-item>
 
+        <ion-item lines="none" *ngIf="images !== null">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="images.data"></ion-img>
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap"> {{ images.name }} </ion-label>
+          <ion-button class="delete" slot="end" (click)="deleteImage(images)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
 
-
-
-
-
-
+        <h3
+          *ngIf="images === null"
+          style="font-size: 0.9rem"
+          class="ion-padding ion-text-center"
+        >
+          Svp selectionez une image!
+        </h3>
 
         <ion-row class="ion-margin-vertical">
           <ion-col
@@ -55,7 +87,7 @@
             class="ion-justify-content-center ion-align-items-center"
           >
             <ion-button
-              class="ion-text-capitalize"
+              class="ion-text-capitalize submit"
               type="submit"
               color="main-yellow"
               expand="block"

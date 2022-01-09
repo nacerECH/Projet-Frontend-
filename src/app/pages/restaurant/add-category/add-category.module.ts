@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +13,10 @@ import { AddCategoryPage } from './add-category.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AddCategoryPageRoutingModule
+    AddCategoryPageRoutingModule,
+    ReactiveFormsModule,
+
   ],
   declarations: [AddCategoryPage]
 })
-export class AddCategoryPageModule {}
+export class AddCategoryPageModule { }

@@ -12,10 +12,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginPage implements OnInit {
   ionicForm: FormGroup;
   isSubmitted = false;
-  // loginData = {
-  //   email: '',
-  //   password: ''
-  // };
 
   constructor(
     public formBuilder: FormBuilder,
@@ -30,7 +26,6 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
-      // name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', [Validators.required]],
     });
@@ -45,18 +40,6 @@ export class LoginPage implements OnInit {
       this.loginAction();
     }
   }
-
-
-  // validateInputs() {
-  //   const email = this.loginData.email.trim();
-  //   const password = this.loginData.password;
-  //   return (
-  //     this.loginData.email &&
-  //     this.loginData.password &&
-  //     email.length > 0 &&
-  //     password.length > 0
-  //   );
-  // }
 
   loginAction() {
     this.authService.login(this.ionicForm.value).subscribe(

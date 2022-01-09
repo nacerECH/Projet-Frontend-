@@ -8,7 +8,12 @@
 </ion-header>
 
 <ion-content class="ion-padding-vertical">
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab
+    [routerLink]="['../add-category']"
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+  >
     <ion-fab-button color="main-yellow">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
