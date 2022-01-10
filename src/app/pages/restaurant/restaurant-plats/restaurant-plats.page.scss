@@ -19,6 +19,7 @@ ion-grid {
     // height: 50vw;
 
     ion-card {
+      --background: var(--ion-color-light-grey-color);
       // height: 100%;
       border-radius: 5px;
       height: 55vw;
@@ -26,8 +27,9 @@ ion-grid {
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      box-shadow: none;
       // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       ion-card-content {
         height: 46vw;
         ion-img {
@@ -40,6 +42,7 @@ ion-grid {
         height: 9vw;
         display: flex;
         justify-content: center;
+        --background: #fff;
       }
 
       ion-img {

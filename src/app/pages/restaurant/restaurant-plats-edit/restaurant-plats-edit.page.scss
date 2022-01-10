@@ -10,11 +10,19 @@ ion-grid {
 }
 ion-item {
   --padding-bottom: 10px;
-
 }
 
+// ion-button {
+//   width: 80%;
+//   margin-top: 10%;
+//   margin-bottom: 20%;
+//   --border-color: #000;
+//   --border-radius: 8px;
+//   --border-style: solid;
+//   --border-width: 2px;
+// }
 
-ion-button {
+ion-button.submit {
   width: 80%;
   margin-top: 10%;
   margin-bottom: 20%;
@@ -22,4 +30,22 @@ ion-button {
   --border-radius: 8px;
   --border-style: solid;
   --border-width: 2px;
+}
+ion-button.delete {
+  --color: #000;
+  --background: transparent;
+  --box-shadow: 0;
+}
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+.accompagnements {
+  .header {
+    font-size: 1rem;
+  }
+  .content ion-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
 }

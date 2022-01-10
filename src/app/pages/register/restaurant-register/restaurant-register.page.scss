@@ -41,3 +41,15 @@ ion-button {
   color: red;
   font-size: 0.8rem;
 }
+
+.getposition {
+  --background: transparent;
+  --border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  ion-icon {
+    color: #000;
+    width: 100%;
+    height: 100%;
+  }
+}

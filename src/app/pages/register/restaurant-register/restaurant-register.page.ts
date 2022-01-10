@@ -6,6 +6,8 @@ import { StorageService } from 'src/app/services/storage.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { matchValidator } from 'src/app/validation/match';
+import { Geolocation } from '@capacitor/geolocation';
+import { LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -23,6 +25,7 @@ export class RestaurantRegisterPage implements OnInit {
     private authService: AuthService,
     private toastService: ToastService,
     private storageService: StorageService,
+    private loadingCtrl: LoadingController,
     private router: Router) { }
 
   get errorControl() {
@@ -37,10 +40,25 @@ export class RestaurantRegisterPage implements OnInit {
       description: ['', [Validators.required]],
       adresse: ['', [Validators.required]],
       ville: ['', [Validators.required]],
+      longitude: ['', [Validators.pattern('[+-]?([0-9]*[.])?[0-9]+'), Validators.required]],
+      latitude: ['', [Validators.pattern('[+-]?([0-9]*[.])?[0-9]+'), Validators.required]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required, matchValidator('password')]],
 
+    });
+  }
+
+  getCurrentPosition() {
+    Geolocation.requestPermissions().then(async premission => {
+      const loading = await this.loadingCtrl.create({
+        message: 'en cours de traitement...',
+      });
+      await loading.present();
+      const coordinates = await Geolocation.getCurrentPosition();
+      this.ionicForm.controls.latitude.setValue(coordinates.coords.latitude);
+      this.ionicForm.controls.longitude.setValue(coordinates.coords.longitude);
+      loading.dismiss();
     });
   }
 
@@ -51,6 +69,7 @@ export class RestaurantRegisterPage implements OnInit {
       console.log('Please provide all the required values!');
       return false;
     } else {
+
       this.signAction();
       console.log(this.ionicForm.value);
     }

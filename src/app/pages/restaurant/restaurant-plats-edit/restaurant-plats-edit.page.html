@@ -7,72 +7,166 @@
 </ion-header>
 
 <ion-content class="ion-padding-vertical">
-
   <ion-grid class="ion-margin-top">
     <ion-row class="ion-align-items-center ion-padding-horizontal">
-      <form>
+      <h3
+        *ngIf="images.length === 0"
+        style="font-size: 0.9rem; width: 100%"
+        class="ion-padding ion-margin-horizontal ion-text-center"
+      >
+        Svp selectionez des images!
+      </h3>
 
-        <ion-item lines="full" class="ionic-margin-bottom">
-          <ion-label color="grey-text-color" position="floating"
-          >Photos plats </ion-label
-        ><br>
-
-          <ion-input type="file" accept="jpg " required > </ion-input>
+      <ion-list style="width: 100%" *ngIf="images.length !== 0">
+        <ion-item lines="none" *ngFor="let file of images; let i = index">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="file.data"></ion-img>
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap"> {{ file.name }} </ion-label>
+          <ion-button slot="end" fill="clear" (click)="deleteImage(file)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
         </ion-item>
+      </ion-list>
 
-
-        <ion-item lines="full" class="ionic-margin-bottom">
-          <ion-label color="grey-text-color" position="floating"
-            >Nom plats </ion-label
+      <form [formGroup]="ionicForm" novalidate (ngSubmit)="submitForm()">
+        <ion-item
+          lines="none"
+          class="ion-margin-horizontal ion-padding-horizontal"
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              width: 100%;
+            "
           >
-          <ion-input type="text" required></ion-input>
-
+            <ion-button
+              class="ion-text-center"
+              fill="clear"
+              expand="full"
+              color="primary"
+              (click)="selectImage()"
+            >
+              <ion-icon slot="end" name="camera"></ion-icon>
+              Ajouter une image
+            </ion-button>
+            <!-- Disabled Checkbox -->
+          </div>
         </ion-item>
-        <ion-item lines="full" class="ionic-margin-bottom">
-          <ion-label color="grey-text-color" position="floating"
-            >Prix</ion-label
-          >
-          <ion-input type="text" required></ion-input>
-        </ion-item>
+        <span
+          style="display: block"
+          class="error ion-margin-horizontal"
+          *ngIf="isSubmitted && errorControl.image.errors?.required"
+        >
+          Une image est obligatoire
+        </span>
 
-        <ion-item lines="full" class="ionic-margin-bottom">
-          <ion-label color="grey-text-color" position="floating"
-            >Prix promo</ion-label
-          >
-          <ion-input type="text" required></ion-input>
-        </ion-item>
+        <ion-list>
+          <input type="hidden" formControlName="image" />
 
-
-
-        <ion-item lines="full" class="ionic-margin-bottom">
-          <ion-label color="grey-text-color" position="floating"
-            >Description</ion-label
-          >
-          <ion-textarea auto-grow="true" rows="5"></ion-textarea>
-        </ion-item>
-
-
-
-
-
-
-
-        <ion-item lines="full" class="ionic-margin-bottom">
-          <ion-label>Souce Algerienne</ion-label>
-          <ion-checkbox color="primary" > </ion-checkbox>
+          <ion-item lines="full" class="ionic-margin-bottom">
+            <ion-label color="grey-text-color" position="floating"
+              >Nom plat
+            </ion-label>
+            <ion-input formControlName="titre" type="text" required></ion-input>
+            <span
+              class="error"
+              *ngIf="isSubmitted && errorControl.titre.errors?.required"
+            >
+              Le nom est oligatoire
+            </span>
           </ion-item>
-         <ion-item>
-          <ion-label>Kitchup</ion-label>
-          <ion-checkbox color="primary" >  </ion-checkbox>
-         </ion-item>
-         <ion-item>
-          <ion-label>Soda</ion-label>
-          <ion-checkbox color="primary" > </ion-checkbox>
-         </ion-item>
-         <ion-item>
-           <ion-label>Coca</ion-label>
-           <ion-checkbox color="primary" >  </ion-checkbox>
+
+          <ion-item lines="full" class="ionic-margin-bottom">
+            <ion-label color="grey-text-color" position="floating"
+              >Prix</ion-label
+            >
+            <ion-input type="text" formControlName="price" required></ion-input>
+            <span
+              class="error"
+              *ngIf="isSubmitted && errorControl.price.errors?.required"
+            >
+              Le prix est obligatoire
+            </span>
+            <span
+              class="error"
+              *ngIf="isSubmitted && errorControl.price.errors?.pattern"
+            >
+              Le prix doit etre un decimal
+            </span>
           </ion-item>
+
+          <ion-item lines="full" class="ionic-margin-bottom">
+            <ion-label color="grey-text-color" position="floating"
+              >Prix promo</ion-label
+            >
+            <ion-input formControlName="promoPrice"></ion-input>
+            <span
+              class="error"
+              *ngIf="isSubmitted && errorControl.promoPrice.errors?.required"
+            >
+              Le prix est obligatoire
+            </span>
+            <span
+              class="error"
+              *ngIf="isSubmitted && errorControl.promoPrice.errors?.pattern"
+            >
+              Le prix doit etre un decimal
+            </span>
+          </ion-item>
+
+          <ion-item lines="full" class="ionic-margin-bottom ion-padding-bottom">
+            <ion-label color="grey-text-color" position="floating"
+              >Description</ion-label
+            >
+            <ion-textarea
+              formControlName="description"
+              auto-grow="true"
+              rows="5"
+            ></ion-textarea>
+            <span
+              class="error"
+              *ngIf="isSubmitted && errorControl.description.errors?.required"
+            >
+              La description est obligatoire
+            </span>
+          </ion-item>
+
+          <ion-item
+            *ngIf="data.length !== 0"
+            class="accompagnements ion-no-padding"
+            lines="none"
+          >
+            <ion-accordion-group style="width: 100%">
+              <ion-accordion>
+                <ion-item lines="none" slot="header">
+                  <ion-label class="header" color="grey-text-color"
+                    >Accompagnements</ion-label
+                  >
+                </ion-item>
+
+                <ion-list class="content ion-padding-horizontal" slot="content">
+                  <ion-item
+                    *ngFor="let object of data; let i=index"
+                    lines="none"
+                    class="ion-no-padding ion-no-margin"
+                  >
+                    <ion-label>{{ object.name }}</ion-label>
+                    <ion-checkbox
+                      (ionChange)="onCheckboxChange($event)"
+                      value="{{ object.value }}"
+                      color="primary"
+                    >
+                    </ion-checkbox>
+                  </ion-item>
+                </ion-list>
+              </ion-accordion>
+            </ion-accordion-group>
+          </ion-item>
+        </ion-list>
 
         <ion-row class="ion-margin-vertical">
           <ion-col
@@ -80,13 +174,13 @@
             class="ion-justify-content-center ion-align-items-center"
           >
             <ion-button
-              class="ion-text-capitalize"
+              class="ion-text-capitalize submit"
               type="submit"
               color="main-yellow"
               expand="block"
               shape="round"
               strong="true"
-              >Editer</ion-button
+              >Ajouter</ion-button
             >
           </ion-col>
         </ion-row>

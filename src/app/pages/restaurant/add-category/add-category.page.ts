@@ -193,16 +193,23 @@ export class AddCategoryPage implements OnInit {
     formData.append('nom', this.ionicForm.controls['titre'].value);
     formData.append('description', this.ionicForm.controls['description'].value);
     // this.ionicForm.patchValue({ file: formData });
-    this.uploadData(formData);
-    // console.log(formData);
+    return await this.uploadData(formData);
   }
 
   // Upload the formData to our API
   // eslint-disable-next-line @typescript-eslint/member-ordering
   async uploadData(formData: FormData) {
 
+    const loading = await this.loadingCtrl.create({
+      message: 'Chargement en cours...',
+    });
+    await loading.present();
 
-    (await (this.httpService.authPost(AppConstants.addMenu, formData))).subscribe((res: any) => {
+    return (await (this.httpService.authPost(AppConstants.addMenu, formData))).pipe(
+      finalize(() => {
+        loading.dismiss();
+      })
+    ).subscribe((res: any) => {
       if (res.success) {
         // this.router.navigate(['home']);
         console.log(res);
@@ -213,9 +220,6 @@ export class AddCategoryPage implements OnInit {
         console.log(error);
         console.log('Network Issue.');
       });
-
-
-
   }
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -225,13 +229,8 @@ export class AddCategoryPage implements OnInit {
       console.log('Please provide all the required values!');
       return false;
     } else {
-      // console.log(this.ionicForm.value);
-      const loading = await this.loadingCtrl.create({
-        message: 'Chargement en cours...',
-      });
-      await loading.present();
-      const result = await this.startUpload(this.images);
-      await loading.dismiss();
+
+      await this.startUpload(this.images);
 
     }
   }
