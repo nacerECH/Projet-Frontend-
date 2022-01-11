@@ -24,18 +24,32 @@ ion-item {
   justify-content: center;
   height: 30vh;
 }
-ion-thumbnail {
+ion-thumbnail.chef {
   height: 20vh;
   width: auto;
 }
-ion-button {
+// ion-button {
+//   width: 80%;
+//   margin-top: 10%;
+//   margin-bottom: 20%;
+//   --border-color: #000;
+//   --border-radius: 20px;
+//   --border-style: solid;
+//   --border-width: 2px;
+// }
+ion-button.submit {
   width: 80%;
   margin-top: 10%;
   margin-bottom: 20%;
   --border-color: #000;
-  --border-radius: 20px;
+  --border-radius: 8px;
   --border-style: solid;
   --border-width: 2px;
+}
+ion-button.delete {
+  --color: #000;
+  --background: transparent;
+  --box-shadow: 0;
 }
 .error {
   color: red;

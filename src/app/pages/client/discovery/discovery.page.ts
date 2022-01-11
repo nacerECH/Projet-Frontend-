@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { PopoverController } from '@ionic/angular';
 import { ClientPopoverComponent } from 'src/app/Components/client-popover/client-popover.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-discovery',
@@ -9,7 +11,12 @@ import { ClientPopoverComponent } from 'src/app/Components/client-popover/client
 })
 export class DiscoveryPage implements OnInit {
 
-  constructor(public popoverController: PopoverController) { }
+  constructor(public popoverController: PopoverController) {
+
+    CapacitorGoogleMaps.initialize({
+      key: environment.mapsKey
+    });
+  }
 
   ngOnInit() {
   }

@@ -223,6 +223,10 @@ export class RestaurantPlatsEditPage implements OnInit {
 
     formData.append('nom', this.ionicForm.controls.titre.value);
     formData.append('description', this.ionicForm.controls.description.value);
+    formData.append('price', this.ionicForm.controls.price.value);
+    formData.append('promoPrice', this.ionicForm.controls.promoPrice.value);
+    formData.append('checkArray', JSON.stringify(this.ionicForm.controls.checkArray.value));
+
     // this.ionicForm.patchValue({ file: formData });
     return await this.uploadData(formData);
   }
@@ -230,13 +234,14 @@ export class RestaurantPlatsEditPage implements OnInit {
   // Upload the formData to our API
   // eslint-disable-next-line @typescript-eslint/member-ordering
   async uploadData(formData: FormData) {
-
+    console.log('FormData');
+    console.log(formData);
     const loading = await this.loadingCtrl.create({
       message: 'Chargement en cours...',
     });
     await loading.present();
 
-    return (await (this.httpService.authPost(AppConstants.addMenu, formData))).pipe(
+    return (await (this.httpService.authPost(AppConstants.addPlat, formData))).pipe(
       finalize(() => {
         loading.dismiss();
       })

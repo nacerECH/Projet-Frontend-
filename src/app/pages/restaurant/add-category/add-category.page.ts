@@ -190,8 +190,8 @@ export class AddCategoryPage implements OnInit {
     const blob = await response.blob();
     const formData = new FormData();
     formData.append('file', blob, file.name);
-    formData.append('nom', this.ionicForm.controls['titre'].value);
-    formData.append('description', this.ionicForm.controls['description'].value);
+    formData.append('nom', this.ionicForm.controls.titre.value);
+    formData.append('description', this.ionicForm.controls.description.value);
     // this.ionicForm.patchValue({ file: formData });
     return await this.uploadData(formData);
   }

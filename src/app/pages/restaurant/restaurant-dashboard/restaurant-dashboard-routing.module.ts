@@ -68,6 +68,10 @@ const routes: Routes = [
     path: 'res-clients',
     loadChildren: () => import('../../restaurant/res-clients/res-clients.module').then(m => m.ResClientsPageModule)
   },
+  {
+    path: 'accompagnant',
+    loadChildren: () => import('../../restaurant/accompagnant/accompagnant.module').then(m => m.AccompagnantPageModule)
+  },
 
 
 

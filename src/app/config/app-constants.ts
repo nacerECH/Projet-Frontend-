@@ -7,6 +7,10 @@ export class AppConstants {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   public static readonly imageDir = 'stored-images';
   public static readonly addMenu = 'menus';
+  public static readonly addAccompagnement = 'accompagnements';
+  public static readonly addPlat = 'plats';
+
+
 
 
 

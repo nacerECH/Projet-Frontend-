@@ -8,16 +8,62 @@
 
 <ion-content class="ion-padding-vertical">
   <div id="icon-image">
-    <ion-thumbnail class="ion-margin-bottom">
+    <ion-thumbnail class="ion-margin-bottom chef">
       <ion-img src="./assets/undraw_chef_cu-0-r.svg"></ion-img>
     </ion-thumbnail>
     <ion-label class="ion-margin-top">
       <h2>Joindre nos restaurants</h2>
     </ion-label>
   </div>
+  <ion-list style="width: 100%" *ngIf="images.length !== 0">
+    <ion-item lines="none" *ngFor="let file of images; let i = index">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="file.data"></ion-img>
+      </ion-thumbnail>
+      <ion-label class="ion-text-wrap"> {{ file.name }} </ion-label>
+      <ion-button slot="end" fill="clear" (click)="deleteImage(file)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
   <ion-grid class="ion-margin-top">
     <ion-row class="ion-align-items-center ion-padding-horizontal">
       <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+        <ion-item
+          lines="none"
+          class="ion-margin-horizontal ion-padding-horizontal"
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              width: 100%;
+            "
+          >
+            <ion-button
+              class="ion-text-center"
+              fill="clear"
+              expand="full"
+              color="primary"
+              (click)="selectImage()"
+            >
+              <ion-icon slot="end" name="camera"></ion-icon>
+              Ajouter une image
+            </ion-button>
+          </div>
+        </ion-item>
+        <span
+          style="display: block"
+          class="error ion-margin-horizontal"
+          *ngIf="isSubmitted && errorControl.image.errors?.required"
+        >
+          Une image est obligatoire
+        </span>
+
+        <input type="hidden" formControlName="image" />
+
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Nom restaurant</ion-label
@@ -35,6 +81,7 @@
             Le Nom de restaurant est obligatoire
           </span>
         </ion-item>
+
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"
             >Nom gerant</ion-label
@@ -266,7 +313,7 @@
             class="ion-justify-content-center ion-align-items-center"
           >
             <ion-button
-              class="ion-text-capitalize"
+              class="ion-text-capitalize submit"
               type="submit"
               color="main-yellow"
               expand="block"

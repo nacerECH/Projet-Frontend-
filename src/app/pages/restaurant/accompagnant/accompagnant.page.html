@@ -1,0 +1,173 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/restaurant"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <form [formGroup]="ionicForm" novalidate (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label color="grey-text-color" position="floating">Nom</ion-label>
+      <ion-input formControlName="nom" type="text"> </ion-input>
+      <span
+        class="error"
+        *ngIf="isSubmitted && errorControl.nom.errors?.required"
+      >
+        Le nom est obligatoire
+      </span>
+    </ion-item>
+    <ion-item>
+      <ion-label color="grey-text-color" position="floating">Prix</ion-label>
+      <ion-input formControlName="prix" type="text"> </ion-input>
+      <span
+        class="error"
+        *ngIf="isSubmitted && errorControl.prix.errors?.required"
+      >
+        Le prix est obligatoire
+      </span>
+      <span
+        class="error"
+        *ngIf="isSubmitted && errorControl.prix.errors?.pattern"
+      >
+        Le prix doit etre un decimal
+      </span>
+    </ion-item>
+    <ion-row class="ion-margin-vertical">
+      <ion-col
+        style="display: flex"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <ion-button
+          class="ion-text-capitalize ion-no-margin submit"
+          type="submit"
+          color="main-yellow"
+          expand="block"
+          shape="round"
+          strong="true"
+          >Ajouter</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-header>
+
+<ion-content class="ion-padding-vertical">
+  <ion-list>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+    <ion-item class="accompagnant ion-margin" lines="none">
+      <ion-label slot="start"> Pizza </ion-label>
+      <ion-note
+        color="grenn-text-color"
+        class="text-center ion-no-margin"
+        slot="end"
+        >5Dhs</ion-note
+      >
+    </ion-item>
+  </ion-list>
+</ion-content>
