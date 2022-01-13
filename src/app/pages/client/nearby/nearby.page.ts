@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
+import { Capacitor } from '@capacitor/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
@@ -19,6 +20,7 @@ export class NearbyPage implements OnInit {
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('map') mapView: ElementRef;
   restaurants: any;
+  // coordinates: any;
   constructor(
     private httpService: HttpService,
     public alertCtrl: AlertController,
@@ -29,10 +31,13 @@ export class NearbyPage implements OnInit {
 
   async ngOnInit() {
 
-    // const coordinates = await Geolocation.getCurrentPosition();
+    const coords = await Geolocation.getCurrentPosition();
+    // this.coordinates.latitude = coords.coords.latitude;
+    // this.coordinates.longitude = coords.coords.longitude;
+
     let params = new HttpParams();
-    params = params.append('latitude', 2.122323);
-    params = params.append('logitude', 3.1223433);
+    params = params.append('latitude', coords.coords.latitude);
+    params = params.append('logitude', coords.coords.longitude);
 
     const loading = await this.loadingCtrl.create({
       message: 'Chargement en cours...',
@@ -65,7 +70,7 @@ export class NearbyPage implements OnInit {
 
   async createMap() {
     const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
-    const coordinates = await Geolocation.getCurrentPosition();
+    const coords = await Geolocation.getCurrentPosition();
 
     CapacitorGoogleMaps.create({
       width: Math.round(boundingRect.width),
@@ -73,8 +78,8 @@ export class NearbyPage implements OnInit {
       x: Math.round(boundingRect.x),
       y: Math.round(boundingRect.y),
       zoom: 5,
-      longitude: coordinates.coords.longitude,
-      latitude: coordinates.coords.latitude
+      longitude: coords.coords.longitude,
+      latitude: coords.coords.latitude
     });
 
     CapacitorGoogleMaps.addListener('onMapReady', async () => {
@@ -87,46 +92,60 @@ export class NearbyPage implements OnInit {
       this.showCurrentPosition();
     });
 
-    CapacitorGoogleMaps.addListener('didTapPOIWithPlaceID', async (ev) => {
-      const result = ev.results;
+    // CapacitorGoogleMaps.addListener('didTapPOIWithPlaceID', async (ev) => {
+    //   const result = ev.results;
 
-      const alert = await this.alertCtrl.create({
-        header: result.name,
-        message: `Place ID:  ${result.placeID}`,
-        buttons: ['OK']
-      });
+    //   const alert = await this.alertCtrl.create({
+    //     header: result.name,
+    //     message: `Place ID:  ${result.placeID}`,
+    //     buttons: ['OK']
+    //   });
 
-      await alert.present();
-    });
+    //   await alert.present();
+    // });
   }
 
   async showCurrentPosition() {
     // todo
     Geolocation.requestPermissions().then(async permission => {
-      const coordinates = await Geolocation.getCurrentPosition();
+      const coords = await Geolocation.getCurrentPosition();
 
-      // CapacitorGoogleMaps.addMarker({
-      //   latitude: coordinates.coords.latitude,
-      //   longitude: coordinates.coords.longitude,
-      //   title: 'My castle of loneliness',
-      //   snippet: 'Come and find me',
-      //   url: './assets/cooking.svg'
-      // });
-      for (const rest of this.restaurants) {
-        CapacitorGoogleMaps.addMarker({
-          latitude: parseFloat(rest.latitude),
-          longitude: parseFloat(rest.longitude),
-          title: rest.nom,
-          snippet: rest.adresse,
-          // url: './assets/cooking.svg'
-        });
-      }
+      CapacitorGoogleMaps.addMarker({
+        latitude: coords.coords.latitude,
+        longitude: coords.coords.longitude,
+        title: 'My castle of loneliness',
+        snippet: 'Come and find me',
+        // url: './assets/cooking.svg'
+      });
       CapacitorGoogleMaps.setCamera({
-        latitude: coordinates.coords.latitude,
-        longitude: coordinates.coords.longitude,
+        latitude: coords.coords.latitude,
+        longitude: coords.coords.longitude,
         zoom: 12,
         bearing: 0
       });
+      CapacitorGoogleMaps.addCircle({
+        center: {
+          latitude: coords.coords.latitude,
+          longitude: coords.coords.longitude,
+        },
+        radius: 5000,
+        strokeColor: '#000',
+        strokeWidth: 3,
+        zIndex: 100,
+        visibility: true,
+      });
+
+      if (this.restaurants !== null) {
+        for (const rest of this.restaurants) {
+          CapacitorGoogleMaps.addMarker({
+            latitude: parseFloat(rest.latitude),
+            longitude: parseFloat(rest.longitude),
+            title: rest.nom,
+            snippet: rest.adresse,
+            // url: './assets/cooking.svg'
+          });
+        }
+      }
     });
   }
 
