@@ -4,6 +4,7 @@ import { AppConstants } from 'src/app/config/app-constants';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastService } from 'src/app/services/toast.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -17,7 +18,8 @@ export class LoginPage implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private toastService: ToastService
   ) { }
 
   get errorControl() {
@@ -61,7 +63,9 @@ export class LoginPage implements OnInit {
         }
       },
       (error: any) => {
+        console.log('HAMZA' + JSON.stringify(error));
         console.log('Network Issue.');
+        this.toastService.presentToast('Erreur de Connexion');
       }
     );
 

@@ -9,6 +9,10 @@ export class AppConstants {
   public static readonly addMenu = 'menus';
   public static readonly addAccompagnement = 'accompagnements';
   public static readonly addPlat = 'plats';
+  public static readonly addCommande = 'commandes';
+  public static readonly getRestaurants = 'restaurants';
+
+
 
 
 

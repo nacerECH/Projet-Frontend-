@@ -17,7 +17,8 @@ import { ComponentModule } from './Components/component.module';
     HttpClientModule,
     ComponentModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

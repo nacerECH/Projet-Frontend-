@@ -70,6 +70,7 @@ export class ClientRegisterPage implements OnInit {
         }
       },
       (error: any) => {
+        console.log('HAMZA' + JSON.stringify(error));
         this.toastService.presentToast('Erreur de Connexion');
       }
     );

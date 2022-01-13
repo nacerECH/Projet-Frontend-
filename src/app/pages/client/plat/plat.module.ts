@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RestaurantPlatsDetailsPageRoutingModule } from './restaurant-plats-details-routing.module';
+import { PlatPageRoutingModule } from './plat-routing.module';
 
-import { RestaurantPlatsDetailsPage } from './restaurant-plats-details.page';
+import { PlatPage } from './plat.page';
 import { ComponentModule } from 'src/app/Components/component.module';
 
 @NgModule({
@@ -14,10 +14,10 @@ import { ComponentModule } from 'src/app/Components/component.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    RestaurantPlatsDetailsPageRoutingModule,
+    PlatPageRoutingModule,
     ComponentModule,
     ReactiveFormsModule
   ],
-  declarations: [RestaurantPlatsDetailsPage]
+  declarations: [PlatPage]
 })
-export class RestaurantPlatsDetailsPageModule { }
+export class PlatPageModule { }

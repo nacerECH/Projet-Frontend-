@@ -3,14 +3,16 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { Accompagnement } from 'src/app/interfaces/accompagnement';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { ToastService } from 'src/app/services/toast.service';
-
+import { AppConstants } from 'src/app/config/app-constants';
+import { HttpService } from 'src/app/services/http.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-restaurant-plats-details',
-  templateUrl: './restaurant-plats-details.page.html',
-  styleUrls: ['./restaurant-plats-details.page.scss'],
+  selector: 'app-plat',
+  templateUrl: './plat.page.html',
+  styleUrls: ['./plat.page.scss'],
 })
-export class RestaurantPlatsDetailsPage implements OnInit {
+export class PlatPage implements OnInit {
   accompagnements: Accompagnement[] = [
     {
       id: 1,
@@ -55,14 +57,15 @@ export class RestaurantPlatsDetailsPage implements OnInit {
   isBuyClicked = false;
   price = 90;
   total = this.price;
-
-
+  qte = 1;
 
   constructor(
     public alertController: AlertController,
     private loadingCtrl: LoadingController,
     private toastService: ToastService,
     public formBuilder: FormBuilder,
+    private httpService: HttpService
+
   ) { }
 
   get errorControl() {
@@ -73,43 +76,13 @@ export class RestaurantPlatsDetailsPage implements OnInit {
     this.ionicForm = this.formBuilder.group({
       adresse: ['', Validators.required],
       phone: ['', Validators.required],
-      total: [this.price, [Validators.pattern('[+-]?([0-9]*[.])?[0-9]+'), Validators.required]],
-      selectedArray: this.formBuilder.array([])
+      total: [this.price],
+      quantity: [this.qte],
+      selectedArray: this.formBuilder.array([]),
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      plat_id: [4]
     });
   }
-
-  showPrompt() {
-    this.alertController.create({
-      header: 'Confirmation',
-      subHeader: 'Entrer votre numero afin que le levreur puisse vous contacter',
-      message: 'Total : 95 DH',
-      inputs: [
-        {
-          name: 'Numero',
-          placeholder: '06....',
-          type: 'tel'
-
-        },
-      ],
-      buttons: [
-        {
-          text: 'Annuler',
-          handler: (data: any) => {
-            console.log('Annuler', data);
-          }
-        },
-        {
-          text: 'Confirmer',
-          handler: (data: any) => {
-            console.log('Confirmer', data);
-          }
-        }
-      ]
-    }).then(res => {
-      res.present();
-    });
-  }
-
   handleChanges(accompagnement: Accompagnement) {
     console.log(accompagnement);
     const checkArray: FormArray = this.ionicForm.get('selectedArray') as FormArray;
@@ -148,20 +121,70 @@ export class RestaurantPlatsDetailsPage implements OnInit {
       });
     }
     console.log(this.ionicForm.controls.selectedArray.value);
+    this.calculateTotal();
+  }
+
+  async submitForm() {
+    this.isSubmitted = true;
+    if (!this.ionicForm.valid) {
+      console.log('Please provide all the required values!');
+      return false;
+    } else {
+      console.log('FormData');
+      console.log(this.ionicForm.value);
+      const loading = await this.loadingCtrl.create({
+        message: 'Chargement en cours...',
+      });
+      await loading.present();
+
+      return (await (this.httpService.authPost(AppConstants.addCommande, this.ionicForm.value))).pipe(
+        finalize(() => {
+          loading.dismiss();
+        })
+      ).subscribe((res: any) => {
+        if (res.success) {
+          // this.router.navigate(['home']);
+          console.log(res);
+
+        }
+      },
+        (error: any) => {
+          console.log(error);
+          console.log('Network Issue.');
+        });
+    }
+
+  }
+  decrement() {
+    if (this.qte > 1) {
+      this.qte--;
+      this.ionicForm.controls.quantity.setValue(this.qte);
+      this.calculateTotal();
+    }
+
+  }
+  increment() {
+    this.qte++;
+    this.ionicForm.controls.quantity.setValue(this.qte);
+    this.calculateTotal();
+
+  }
+
+  calculateTotal() {
+    const checkArray: FormArray = this.ionicForm.get('selectedArray') as FormArray;
+
     this.total = 0;
     if (this.ionicForm.controls.selectedArray.value.length > 0) {
       checkArray.controls.forEach((item: FormControl) => {
         this.total += item.value.quantity * item.value.prix;
       });
     }
-    this.total += this.price;
+    this.total += this.price * this.qte;
     this.ionicForm.controls.total.setValue(this.total);
   }
-
-  submitForm() {
-
+  toggleForm() {
+    this.isBuyClicked = !this.isBuyClicked;
   }
-
 
 
 }

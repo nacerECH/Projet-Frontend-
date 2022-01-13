@@ -36,6 +36,10 @@ const routes: Routes = [
     path: 'restaurants',
     loadChildren: () => import('../client-restaurant/client-restaurant.module').then(m => m.ClientRestaurantPageModule)
   },
+  {
+    path: 'plat',
+    loadChildren: () => import('../plat/plat.module').then(m => m.PlatPageModule)
+  },
 
 
 ];

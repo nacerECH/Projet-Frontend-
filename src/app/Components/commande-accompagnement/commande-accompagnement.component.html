@@ -1,0 +1,17 @@
+<ion-item lines="none" class="accompat-elt">
+  <label slot="start" class="accompat-elt-name"
+    >{{ accompagnement.nom }} :
+  </label>
+  <div slot="end">
+    <ion-button (click)="decrement()" slot="start" class="accompat-elt-btns">
+      -
+    </ion-button>
+    <span class="accompat-elt-qte ion-margin-horizontal">{{
+      accompagnement.quantity
+    }}</span>
+    <ion-button (click)="increment()" slot="end" class="accompat-elt-btns">
+      +
+    </ion-button>
+  </div>
+  <span class="price" slot="end">{{ accompagnement.prix }}Dhs</span>
+</ion-item>

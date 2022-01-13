@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RestaurantPopoverComponent } from './restaurant-popover/restaurant-popover.component';
 import { ClientPopoverComponent } from './client-popover/client-popover.component';
+import { CommandeAccompagnementComponent } from './commande-accompagnement/commande-accompagnement.component';
 
 
 
@@ -10,12 +11,14 @@ import { ClientPopoverComponent } from './client-popover/client-popover.componen
 @NgModule({
   declarations: [
     RestaurantPopoverComponent,
-    ClientPopoverComponent
+    ClientPopoverComponent,
+    CommandeAccompagnementComponent,
   ],
   imports: [
     CommonModule,
     IonicModule
   ],
-  exports: [RestaurantPopoverComponent, ClientPopoverComponent],
+  exports: [RestaurantPopoverComponent, ClientPopoverComponent, CommandeAccompagnementComponent,
+  ],
 })
 export class ComponentModule { }

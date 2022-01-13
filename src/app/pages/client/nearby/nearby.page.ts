@@ -1,7 +1,11 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { Geolocation } from '@capacitor/geolocation';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { finalize } from 'rxjs/operators';
+import { AppConstants } from 'src/app/config/app-constants';
+import { HttpService } from 'src/app/services/http.service';
 
 
 @Component({
@@ -12,15 +16,47 @@ import { AlertController } from '@ionic/angular';
 export class NearbyPage implements OnInit {
 
 
-  alertCtrl: AlertController;
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('map') mapView: ElementRef;
-
-  constructor() {
+  restaurants: any;
+  constructor(
+    private httpService: HttpService,
+    public alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+  ) {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+    // const coordinates = await Geolocation.getCurrentPosition();
+    let params = new HttpParams();
+    params = params.append('latitude', 2.122323);
+    params = params.append('logitude', 3.1223433);
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Chargement en cours...',
+    });
+    await loading.present();
+    return (await (this.httpService.authGet(AppConstants.getRestaurants, params))).pipe(
+      finalize(() => {
+        loading.dismiss();
+      })
+    ).subscribe((res: any) => {
+      if (res.success) {
+        // this.router.navigate(['home']);
+        console.log(res);
+        this.restaurants = res.restaurants;
+
+      }
+    },
+      (error: any) => {
+        console.log(error);
+        console.log('Network Issue.');
+      });
+
+
+
   }
 
   ionViewDidEnter() {
@@ -69,13 +105,22 @@ export class NearbyPage implements OnInit {
     Geolocation.requestPermissions().then(async permission => {
       const coordinates = await Geolocation.getCurrentPosition();
 
-      CapacitorGoogleMaps.addMarker({
-        latitude: coordinates.coords.latitude,
-        longitude: coordinates.coords.longitude,
-        title: 'My castle of loneliness',
-        snippet: 'Come and find me',
-        url: './assets/cooking.svg'
-      });
+      // CapacitorGoogleMaps.addMarker({
+      //   latitude: coordinates.coords.latitude,
+      //   longitude: coordinates.coords.longitude,
+      //   title: 'My castle of loneliness',
+      //   snippet: 'Come and find me',
+      //   url: './assets/cooking.svg'
+      // });
+      for (const rest of this.restaurants) {
+        CapacitorGoogleMaps.addMarker({
+          latitude: parseFloat(rest.latitude),
+          longitude: parseFloat(rest.longitude),
+          title: rest.nom,
+          snippet: rest.adresse,
+          // url: './assets/cooking.svg'
+        });
+      }
       CapacitorGoogleMaps.setCamera({
         latitude: coordinates.coords.latitude,
         longitude: coordinates.coords.longitude,
