@@ -30,7 +30,10 @@ export class RestaurantPopoverComponent implements OnInit {
       async (res: any) => {
         if (res) {
           await this.storageService.removeStorageItem(AppConstants.auth);
-          this.router.navigate(['home']);
+          // this.router.navigate(['home']);
+          this.router.navigateByUrl('home', {
+            replaceUrl: true
+          });
 
         }
       },

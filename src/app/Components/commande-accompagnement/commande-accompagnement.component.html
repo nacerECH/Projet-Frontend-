@@ -1,8 +1,8 @@
-<ion-item lines="none" class="accompat-elt">
-  <label slot="start" class="accompat-elt-name"
+<ion-item lines="none" class="ion-padding-horizontal-sm accompat-elt">
+  <label slot="start" class="ion-no-margin accompat-elt-name"
     >{{ accompagnement.nom }} :
   </label>
-  <div slot="end">
+  <div slot="end" class="quantity ion-no-margin">
     <ion-button (click)="decrement()" slot="start" class="accompat-elt-btns">
       -
     </ion-button>
@@ -13,5 +13,7 @@
       +
     </ion-button>
   </div>
-  <span class="price" slot="end">{{ accompagnement.prix }}Dhs</span>
+  <span class="ion-no-margin price" slot="end"
+    >{{ accompagnement.prix }}Dhs</span
+  >
 </ion-item>

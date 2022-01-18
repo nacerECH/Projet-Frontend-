@@ -1,5 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { Capacitor } from '@capacitor/core';
 import { Geolocation } from '@capacitor/geolocation';
@@ -7,6 +8,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 import { AppConstants } from 'src/app/config/app-constants';
 import { HttpService } from 'src/app/services/http.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 
 @Component({
@@ -15,7 +17,7 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./nearby.page.scss'],
 })
 export class NearbyPage implements OnInit {
-
+  result: any = null;
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('map') mapView: ElementRef;
@@ -25,11 +27,42 @@ export class NearbyPage implements OnInit {
     private httpService: HttpService,
     public alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
+    private toastService: ToastService,
+    private router: Router
   ) {
 
   }
 
   async ngOnInit() {
+  }
+  async getRestaurantById(data) {
+
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Chargement en cours...',
+    });
+    await loading.present();
+    return (await (this.httpService.authGet(AppConstants.getRestaurants + '/' + data.detail.value))).pipe(
+      finalize(() => {
+        loading.dismiss();
+      })
+    ).subscribe((res: any) => {
+      if (res.success) {
+        // this.router.navigate(['home']);
+        console.log(res.data.restaurant);
+        console.log('HAMZA' + JSON.stringify(res));
+        this.result = res.data.restaurant;
+        console.log(this.result);
+      }
+    },
+      (error: any) => {
+        this.toastService.presentToast('Pas de resultat');
+        console.log(error);
+        console.log('HAMZA' + JSON.stringify(error));
+        console.log('Network Issue.');
+      });
+  }
+  async getRestaurantsList() {
 
     const coords = await Geolocation.getCurrentPosition();
     // this.coordinates.latitude = coords.coords.latitude;
@@ -37,7 +70,7 @@ export class NearbyPage implements OnInit {
 
     let params = new HttpParams();
     params = params.append('latitude', coords.coords.latitude);
-    params = params.append('logitude', coords.coords.longitude);
+    params = params.append('longitude', coords.coords.longitude);
 
     const loading = await this.loadingCtrl.create({
       message: 'Chargement en cours...',
@@ -51,20 +84,21 @@ export class NearbyPage implements OnInit {
       if (res.success) {
         // this.router.navigate(['home']);
         console.log(res);
-        this.restaurants = res.restaurants;
+        console.log('HAMZA' + JSON.stringify(res));
+        this.restaurants = res.data.restaurants;
 
       }
     },
       (error: any) => {
         console.log(error);
+        console.log('HAMZA' + JSON.stringify(error));
         console.log('Network Issue.');
+        this.toastService.presentToast('Network Issue.');
       });
-
-
-
   }
 
-  ionViewDidEnter() {
+  async ionViewDidEnter() {
+    await this.getRestaurantsList();
     this.createMap();
   }
 
@@ -151,6 +185,22 @@ export class NearbyPage implements OnInit {
 
   ionViewDidLeave() {
     CapacitorGoogleMaps.close();
+  }
+
+  async search(data) {
+    if (/^\d+$/.test(data.detail.value)) {
+      console.log(data.detail.value);
+      this.getRestaurantById(data);
+
+    } else {
+      console.log('not match');
+    }
+  }
+  deleteResult() {
+    this.result = null;
+  }
+  navigateRestaurant($event) {
+    this.router.navigate(['/client/restaurant', $event]);
   }
 
 }

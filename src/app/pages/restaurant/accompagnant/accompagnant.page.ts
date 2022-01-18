@@ -6,6 +6,7 @@ import { AppConstants } from 'src/app/config/app-constants';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-accompagnant',
@@ -15,7 +16,7 @@ import { finalize } from 'rxjs/operators';
 export class AccompagnantPage implements OnInit {
   ionicForm: FormGroup;
   isSubmitted = false;
-
+  acc: any;
   constructor(
     private loadingCtrl: LoadingController,
     private toastService: ToastService,
@@ -33,6 +34,7 @@ export class AccompagnantPage implements OnInit {
       nom: ['', [Validators.required]],
       prix: ['', [Validators.required, Validators.pattern('[+-]?([0-9]*[.])?[0-9]+')]],
     });
+    this.getAcc();
   }
   async submitForm() {
     this.isSubmitted = true;
@@ -49,10 +51,14 @@ export class AccompagnantPage implements OnInit {
         finalize(() => {
           loading.dismiss();
         })
-      ).subscribe((res: any) => {
+      ).subscribe(async (res: any) => {
         if (res.success) {
           // this.router.navigate(['home']);
           console.log(res);
+          await this.getAcc();
+          this.ionicForm.controls['nom'].setValue('');
+          this.ionicForm.controls['prix'].setValue('');
+          this.isSubmitted = false;
 
         }
       },
@@ -61,6 +67,32 @@ export class AccompagnantPage implements OnInit {
           console.log('Network Issue.');
         });
     }
+  }
+  async getAcc() {
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Chargement en cours...',
+    });
+    await loading.present();
+    return (await (this.httpService.authGet(AppConstants.getAcc))).pipe(
+      finalize(() => {
+        loading.dismiss();
+      })
+    ).subscribe((res: any) => {
+      if (res.success) {
+        console.log(res);
+        console.log();
+        this.acc = res.data.accompagnements;
+        console.log(this.acc);
+
+      }
+    },
+      (error: any) => {
+        this.toastService.presentToast('Pas de resultat');
+        console.log(error);
+        console.log('HAMZA' + JSON.stringify(error));
+        console.log('Network Issue.');
+      });
   }
 
 }

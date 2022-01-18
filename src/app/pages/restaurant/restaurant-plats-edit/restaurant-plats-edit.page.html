@@ -140,7 +140,7 @@
             class="accompagnements ion-no-padding"
             lines="none"
           >
-            <ion-accordion-group style="width: 100%">
+            <ion-accordion-group *ngIf="acc" style="width: 100%">
               <ion-accordion>
                 <ion-item lines="none" slot="header">
                   <ion-label class="header" color="grey-text-color"
@@ -150,14 +150,14 @@
 
                 <ion-list class="content ion-padding-horizontal" slot="content">
                   <ion-item
-                    *ngFor="let object of data; let i=index"
+                    *ngFor="let ac of acc; let i=index"
                     lines="none"
                     class="ion-no-padding ion-no-margin"
                   >
-                    <ion-label>{{ object.name }}</ion-label>
+                    <ion-label>{{ ac.nom }}</ion-label>
                     <ion-checkbox
                       (ionChange)="onCheckboxChange($event)"
-                      value="{{ object.value }}"
+                      value="{{ ac.id }}"
                       color="primary"
                     >
                     </ion-checkbox>

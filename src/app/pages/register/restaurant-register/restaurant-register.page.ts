@@ -105,10 +105,16 @@ export class RestaurantRegisterPage implements OnInit {
             .store(AppConstants.auth, res.data)
             .then(() => {
               if (res.data.role === 'clt') {
-                this.router.navigate(['client']);
+                // this.router.navigate(['client']);
+                this.router.navigateByUrl('client', {
+                  replaceUrl: true
+                });
               }
               else {
-                this.router.navigate(['restaurant']);
+                // this.router.navigate(['restaurant']);
+                this.router.navigateByUrl('restaurant', {
+                  replaceUrl: true
+                });
               }
               // this.router.navigate(['client']);
             });

@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
@@ -7,11 +8,12 @@ import { HttpService } from 'src/app/services/http.service';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
-  selector: 'app-restaurant-menu',
-  templateUrl: './restaurant-menu.page.html',
-  styleUrls: ['./restaurant-menu.page.scss'],
+  selector: 'app-client-menu',
+  templateUrl: './client-menu.page.html',
+  styleUrls: ['./client-menu.page.scss'],
 })
-export class RestaurantMenuPage implements OnInit {
+export class ClientMenuPage implements OnInit, OnDestroy {
+  dataSubscription: any;
   menus: any;
   constructor(
     private router: Router,
@@ -21,18 +23,25 @@ export class RestaurantMenuPage implements OnInit {
     private toastService: ToastService,
   ) { }
 
-
   async ngOnInit() {
+    this.dataSubscription = await this.activatedRoute.paramMap.subscribe(async params => {
+      console.log(params.get('id'));
+      console.log(params);
+      await this.getMenus(params.get('id'));
 
-    await this.getMenus();
+    }, error => {
+      console.log(error);
+    });
   }
-  async getMenus() {
+  async getMenus(id) {
 
+    let params = new HttpParams();
+    params = params.append('id', id);
     const loading = await this.loadingCtrl.create({
       message: 'Chargement en cours...',
     });
     await loading.present();
-    return (await (this.httpService.authGet(AppConstants.addMenu))).pipe(
+    return (await (this.httpService.authGet(AppConstants.addMenu, params))).pipe(
       finalize(() => {
         loading.dismiss();
       })
@@ -50,10 +59,9 @@ export class RestaurantMenuPage implements OnInit {
         console.log('Network Issue.');
       });
   }
-  async ionViewWillEnter() {
-    await this.getMenus();
 
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
   }
-
 
 }

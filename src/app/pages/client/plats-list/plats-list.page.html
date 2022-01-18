@@ -8,28 +8,11 @@
 </ion-header>
 
 <ion-content class="ion-padding-vertical">
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="main-yellow">
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button
-        *ngIf="id"
-        [routerLink]="['/restaurant/restaurant-plats-edit',id]"
-        ><ion-icon name="fast-food-outline"></ion-icon
-      ></ion-fab-button>
-    </ion-fab-list>
-    <ion-fab-list side="start">
-      <ion-fab-button [routerLink]="['/restaurant/accompagnant']"
-        ><ion-icon name="pizza-outline"></ion-icon
-      ></ion-fab-button>
-    </ion-fab-list>
-  </ion-fab>
   <ion-grid *ngIf="plats">
     <ion-row class="">
       <ion-col *ngFor="let plat of plats.plats; let i = index" size="6">
         <ion-card
-          [routerLink]="['/restaurant/plats-details',plat.id]"
+          [routerLink]="['/client/single-plat',plat.id]"
           class="ion-no-margin"
         >
           <ion-card-content class="ion-no-padding">

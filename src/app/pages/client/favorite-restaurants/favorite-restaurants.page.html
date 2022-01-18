@@ -17,94 +17,71 @@
   </ion-segment>
   <ion-list
     class="ion-padding"
-    *ngIf="selectedSegment === 'restaurants'"
+    *ngIf="selectedSegment === 'restaurants' && this.likes"
     select-on-focus
   >
-    <ion-item lines="none" class="ion-no-padding">
-      <article class="list-item">
-        <img src="assets/restau.jpg" alt="" class="picture" />
-        <span class="name">Tasty</span>
-        <span class="value">5<span>X</span></span>
-      </article>
-    </ion-item>
-    <ion-item lines="none" class="ion-no-padding">
-      <article class="list-item">
-        <img src="assets/restau.jpg" alt="" class="picture" />
-        <span class="name">Tasty</span>
-        <span class="value">5<span>X</span></span>
-      </article>
-    </ion-item>
-    <ion-item lines="none" class="ion-no-padding">
-      <article class="list-item">
-        <img src="assets/restau.jpg" alt="" class="picture" />
-        <span class="name">Tasty</span>
-        <span class="value">5<span>X</span></span>
-      </article>
-    </ion-item>
-    <!--  -->
-    <ion-item lines="none" class="ion-no-padding">
-      <article class="list-item">
-        <img src="assets/restau.jpg" alt="" class="picture" />
-        <span class="name">Tasty</span>
-        <span class="value">5<span>X</span></span>
-      </article>
-    </ion-item>
-    <ion-item lines="none" class="ion-no-padding">
-      <article class="list-item">
-        <img src="assets/restau.jpg" alt="" class="picture" />
-        <span class="name">Pollos </span>
-        <span class="value">4.5<span>X</span></span>
-      </article>
-    </ion-item>
-    <ion-item lines="none" class="ion-no-padding">
-      <article class="list-item">
-        <img src="assets/restau.jpg" alt="" class="picture" />
-        <span class="name">Snack X</span>
-        <span class="value">4<span>X</span></span>
-      </article>
-    </ion-item>
-    <ion-item lines="none" class="ion-no-padding">
-      <article class="list-item">
-        <img src="assets/restau.jpg" alt="" class="picture" />
-        <span class="name">Evan Spiegel</span>
-        <span class="value">2<span>X</span></span>
-      </article>
-    </ion-item>
-  </ion-list>
-
-  <ion-list class="ion-padding" *ngIf="selectedSegment === 'clients'">
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Hamburger</span>
-        <span class="value">35.7<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Pizza</span>
-        <span class="value">15.0<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Tacos</span>
-        <span class="value">20<span>DH</span></span>
-      </article>
-    </ion-item>
-  </ion-list>
-
-  <!-- <article class="leaderboard">
-    <main
-      class="list-items"
-      *ngIf="selectedSegment === 'friends'"
-      select-on-focus
+    <!-- <ion-item
+      *ngFor="let restaurant of likes.restaurants; let i = index"
+      lines="none"
+      class="ion-no-padding"
     >
-       -->
-  <!-- </main>
+      <article class="list-item">
+        <img src="assets/restau.jpg" alt="" class="picture" />
+        <span class="name">Tasty</span>
+        <span class="value">5<span>X</span></span>
+      </article>
+    </ion-item> -->
+    <ion-item
+      *ngFor="let restaurant of likes.restaurants; let i = index"
+      (click)="navigateRestaurant(restaurant.liked.id)"
+      class="new ion-no-padding"
+      lines="none"
+    >
+      <ion-avatar style="width: 23vw; height: 23vw" class="ion-margin-end">
+        <img
+          *ngIf="restaurant.liked.images.length"
+          [src]="restaurant.liked.images[0].uri"
+          alt=""
+        />
+      </ion-avatar>
+      <ion-label>
+        <h3 class="name">{{ restaurant.liked.nom }}</h3>
+        <p class="info">8am to 6pm</p>
+        <p class="info ion-text-wrap">{{ restaurant.liked.adresse}}</p>
+        <p class="rate">
+          3.5
+          <ion-icon class="star-icon" name="star"></ion-icon>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
-    <main class="list-items" *ngIf="selectedSegment === 'enemies'"></main>
-  </article>  -->
+  <ion-list
+    class="ion-padding"
+    *ngIf="selectedSegment === 'clients' && this.likes"
+  >
+    <ion-item
+      *ngFor="let plat of likes.plats; let i = index"
+      (click)="navigatePlat(plat.liked.id)"
+      class="new ion-no-padding"
+      lines="none"
+    >
+      <ion-avatar style="width: 23vw; height: 23vw" class="ion-margin-end">
+        <img
+          *ngIf="plat.liked.images.length"
+          [src]="plat.liked.images[0].uri"
+          alt=""
+        />
+      </ion-avatar>
+      <ion-label>
+        <h3 class="name">{{ plat.liked.nom }}</h3>
+        <p class="info">{{ plat.liked.restaurant.nom}}</p>
+        <p class="price ion-text-wrap">{{ plat.liked.price}}Dhs</p>
+        <p class="rate">
+          3.5
+          <ion-icon class="star-icon" name="star"></ion-icon>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Accompagnement } from 'src/app/interfaces/accompagnement';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
@@ -6,73 +6,51 @@ import { ToastService } from 'src/app/services/toast.service';
 import { AppConstants } from 'src/app/config/app-constants';
 import { HttpService } from 'src/app/services/http.service';
 import { finalize } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-plat',
   templateUrl: './plat.page.html',
   styleUrls: ['./plat.page.scss'],
 })
-export class PlatPage implements OnInit {
-  accompagnements: Accompagnement[] = [
-    {
-      id: 1,
-      nom: 'coca',
-      prix: 5,
-      quantity: 0
-    },
-    {
-      id: 2,
-      nom: 'frite',
-      prix: 3,
-      quantity: 0
-    },
-    {
-      id: 3,
-      nom: 'sauce',
-      prix: 1,
-      quantity: 0
-    },
-    {
-      id: 4,
-      nom: 'salade',
-      prix: 12,
-      quantity: 0
-    },
-    {
-      id: 5,
-      nom: 'pain',
-      prix: 1,
-      quantity: 0
-    },
-    {
-      id: 6,
-      nom: 'jus',
-      prix: 7,
-      quantity: 0
-    }
-
-  ];
+export class PlatPage implements OnInit, OnDestroy {
   ionicForm: FormGroup;
   isSubmitted = false;
   isBuyClicked = false;
-  price = 90;
-  total = this.price;
+  price;
+  total;
   qte = 1;
+  plat: any;
+  dataSubscription: any;
+  id: any;
+  isLiked: boolean;
 
   constructor(
     public alertController: AlertController,
     private loadingCtrl: LoadingController,
     private toastService: ToastService,
     public formBuilder: FormBuilder,
-    private httpService: HttpService
-
+    private httpService: HttpService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   get errorControl() {
     return this.ionicForm.controls;
   };
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.dataSubscription = await this.activatedRoute.paramMap.subscribe(async params => {
+      console.log(params.get('id'));
+      console.log(params);
+      this.id = params.get('id');
+      await this.getPlat(params.get('id'));
+      await this.getIfLiked(params.get('id'));
+
+    }, error => {
+      console.log(error);
+    });
     this.ionicForm = this.formBuilder.group({
       adresse: ['', Validators.required],
       phone: ['', Validators.required],
@@ -80,7 +58,7 @@ export class PlatPage implements OnInit {
       quantity: [this.qte],
       selectedArray: this.formBuilder.array([]),
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      plat_id: [4]
+      plat_id: [this.id]
     });
   }
   handleChanges(accompagnement: Accompagnement) {
@@ -145,6 +123,9 @@ export class PlatPage implements OnInit {
         if (res.success) {
           // this.router.navigate(['home']);
           console.log(res);
+          this.router.navigateByUrl('/client/orders-history', {
+            replaceUrl: true
+          });
 
         }
       },
@@ -185,6 +166,100 @@ export class PlatPage implements OnInit {
   toggleForm() {
     this.isBuyClicked = !this.isBuyClicked;
   }
+
+  async getPlat(id) {
+
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Chargement en cours...',
+    });
+    await loading.present();
+    return (await (this.httpService.authGet(AppConstants.addPlat + '/' + id))).pipe(
+      finalize(() => {
+        loading.dismiss();
+      })
+    ).subscribe((res: any) => {
+      if (res.success) {
+        console.log(res);
+        this.plat = res.data.plat;
+        this.price = this.total = parseFloat(this.plat.price);
+        console.log(this.plat);
+      }
+    },
+      (error: any) => {
+        this.toastService.presentToast('Pas de resultat');
+        console.log(error);
+        console.log('HAMZA' + JSON.stringify(error));
+        console.log('Network Issue.');
+      });
+  }
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
+  }
+  async getIfLiked(id) {
+    let params = new HttpParams();
+    params = params.append('type', 'plat');
+    params = params.append('operation', 'verification');
+
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Chargement en cours...',
+    });
+    await loading.present();
+    return (await (this.httpService.authGet(AppConstants.likes + '/' + id, params))).pipe(
+      finalize(() => {
+        loading.dismiss();
+      })
+    ).subscribe((res: any) => {
+      if (res.success) {
+        console.log('Like existe');
+        console.log(res);
+        this.isLiked = res.data.result;
+        console.log(this.isLiked);
+
+      }
+    },
+      (error: any) => {
+        this.toastService.presentToast('Pas de resultat');
+        console.log(error);
+        console.log('HAMZA' + JSON.stringify(error));
+        console.log('Network Issue.');
+      });
+  }
+  async toggle() {
+    let params = new HttpParams();
+    params = params.append('type', 'plat');
+    params = params.append('operation', 'edit');
+    if (this.isLiked === true) {
+      params = params.append('action', 'dettach');
+    } else {
+      params = params.append('action', 'attach');
+
+    }
+    const loading = await this.loadingCtrl.create({
+      message: 'Chargement en cours...',
+    });
+    await loading.present();
+    return (await (this.httpService.authGet(AppConstants.likes + '/' + this.id, params))).pipe(
+      finalize(() => {
+        loading.dismiss();
+      })
+    ).subscribe((res: any) => {
+      if (res.success) {
+        this.isLiked = !this.isLiked;
+        console.log('Like existe');
+        console.log(res);
+        this.isLiked = res.data.result;
+      }
+    },
+      (error: any) => {
+        this.toastService.presentToast('Pas de resultat');
+        console.log(error);
+        console.log('HAMZA' + JSON.stringify(error));
+        console.log('Network Issue.');
+      });
+  }
+
 
 
 }

@@ -51,122 +51,18 @@
 </ion-header>
 
 <ion-content class="ion-padding-vertical">
-  <ion-list>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
+  <ion-list *ngIf="acc">
+    <ion-item
+      *ngFor="let ac of acc; let i = index"
+      class="accompagnant ion-margin"
+      lines="none"
+    >
+      <ion-label slot="start"> {{ ac.nom }} </ion-label>
       <ion-note
         color="grenn-text-color"
         class="text-center ion-no-margin"
         slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
-      >
-    </ion-item>
-    <ion-item class="accompagnant ion-margin" lines="none">
-      <ion-label slot="start"> Pizza </ion-label>
-      <ion-note
-        color="grenn-text-color"
-        class="text-center ion-no-margin"
-        slot="end"
-        >5Dhs</ion-note
+        >{{ ac.prix }}Dhs</ion-note
       >
     </ion-item>
   </ion-list>

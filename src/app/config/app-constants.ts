@@ -11,6 +11,9 @@ export class AppConstants {
   public static readonly addPlat = 'plats';
   public static readonly addCommande = 'commandes';
   public static readonly getRestaurants = 'restaurants';
+  public static readonly getAcc = 'accompagnements';
+  public static readonly likes = 'likes';
+
 
 
 

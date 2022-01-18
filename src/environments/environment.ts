@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'http://localhost:8000/api/',
-  apiUrl: 'https://ionic.artdecor.ma/api/',
+  apiUrl: 'http://localhost:8000/api/',
+  // apiUrl: 'https://ionic.artdecor.ma/api/',
   mapsKey: 'AIzaSyDa0gL-qMWzGw3UpnmLS7le6WESpqeoz-4'
 
 };

@@ -1,6 +1,4 @@
 ion-content {
-  top: -44px;
-
   ion-item.description {
     font-size: 1rem;
   }
@@ -36,35 +34,12 @@ ion-slides {
     header {
       color: var(--ion-color-grey-text-color);
     }
-    // .accompat-elt {
-    //   padding-bottom: 5%;
-    // }
-    // .accompat-elt-name {
-    //   font-size: 0.9rem;
-    // }
-    // .accompat-elt-qte {
-    //   vertical-align: middle;
-    //   height: 100%;
-    // }
-    // .accompat-elt-btns {
-    //   border-radius: 50%;
-    //   --box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 10px 3px;
-    //   width: 35px;
-    //   height: 35px;
-    //   --border-radius: 50%;
-    //   background-color: var(--ion-color-light-grey-color);
-    //   --background: var(--ion-color-light-grey-color);
-    //   --background-hover: var(--ion-color-light-grey-color);
-    //   --color: #000;
-    //   font-weight: bold;
-    //   font-size: 1.2rem;
-    // }
   }
 }
-ion-fab {
+ion-fab.buy {
   width: 100%;
   bottom: 0;
-  height: 8vh;
+  height: 65px;
   ion-button {
     margin: auto;
     height: 90%;
@@ -81,6 +56,28 @@ ion-fab {
       font-weight: 600;
       float: right;
       width: 30%;
+    }
+  }
+}
+ion-fab.heart {
+  right: 10px;
+  background-color: transparent;
+  --background: transparent;
+  --background-activated: transparent;
+  --background-focused: transparent;
+  --background-hover: transparent;
+  --border: 0;
+
+  ion-fab-button {
+    background-color: transparent;
+    --background: transparent;
+    --background: transparent;
+    --background-activated: transparent;
+    --background-focused: transparent;
+    --background-hover: transparent;
+    --box-shadow: 0;
+    ion-icon {
+      color: #000;
     }
   }
 }
@@ -112,8 +109,8 @@ ion-header {
 .accompat-elt-btns {
   border-radius: 50%;
   --box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 10px 3px;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   --border-radius: 50%;
   background-color: var(--ion-color-light-grey-color);
   --background: var(--ion-color-light-grey-color);
@@ -121,4 +118,10 @@ ion-header {
   --color: #000;
   font-weight: bold;
   font-size: 1.2rem;
+}
+ion-content.md {
+  top: -56px;
+}
+ion-content.ios {
+  top: -44px;
 }

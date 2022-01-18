@@ -6,16 +6,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content *ngIf="restaurant" [fullscreen]="true">
   <ion-slides class="" pager="true">
-    <ion-slide>
+    <ion-slide *ngFor="let image of restaurant.images; let i = index">
       <ion-item lines="none">
-        <ion-img
-          src="assets/side-view-pizza-with-chopped-pepper-board-cookware(1).jpg"
-        ></ion-img>
+        <ion-img [src]="image.uri"></ion-img>
       </ion-item>
     </ion-slide>
-    <ion-slide>
+    <!-- <ion-slide>
       <ion-item lines="none">
         <ion-img src="assets/pexels-pixabay-357756.jpg"></ion-img>
       </ion-item>
@@ -24,18 +22,20 @@
       <ion-item lines="none">
         <ion-img src="assets/pexels-nadezhda-moryak-4409273.jpg"></ion-img>
       </ion-item>
-    </ion-slide>
+    </ion-slide> -->
   </ion-slides>
   <div class="details-content">
     <header class="meal-name ion-margin-top ion-margin-horizontal">
       <h1 style="display: inline-block" slot="start" class="ion-no-margin">
-        La Breva
+        {{ restaurant.nom }}
       </h1>
       <ion-icon
+        [ngStyle]="{'color': (isLiked) ? 'red' : '#000'}"
         style="float: right"
         slot="end"
-        name="heart-outline"
+        [name]="isLiked?'heart':'heart-outline'"
         size="large"
+        (click)="toggle()"
       ></ion-icon>
     </header>
     <ion-item class="phone" lines="none">
@@ -44,7 +44,9 @@
     </ion-item>
     <ion-item class="email" lines="none">
       <ion-label slot="start" color="grey-text-color"> Email </ion-label>
-      <ion-note color="grenn-text-color" slot="end">Breva@gmail.com</ion-note>
+      <ion-note color="grenn-text-color" slot="end"
+        >{{ restaurant.user.email }}</ion-note
+      >
     </ion-item>
     <!-- Getting and setting the state of the accordion group -->
     <ion-accordion-group class="description">
@@ -54,10 +56,7 @@
         </ion-item>
 
         <ion-item class="description" lines="none" slot="content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-          repudiandae alias praesentium consequuntur, nihil deserunt consequatur
-          vitae numquam minus delectus, dignissimos, nam cupiditate illum
-          placeat eius neque quo dolor aspernatur?
+          {{ restaurant.description }}
         </ion-item>
       </ion-accordion>
     </ion-accordion-group>
@@ -67,13 +66,20 @@
         color="grenn-text-color"
         class="text-center ion-no-margin"
         slot="end"
-        >Ave Allal Ben Abdellah, Fes 30050</ion-note
       >
+        {{ restaurant.adresse + ' ' + restaurant.ville }}
+      </ion-note>
     </ion-item>
   </div>
 </ion-content>
 <ion-fab vertical="bottom" slot="fixed">
-  <ion-button expand="full" shape="round" color="main-yellow">
+  <ion-button
+    *ngIf="restaurant"
+    [routerLink]="['/client/menu' , restaurant.id]"
+    expand="full"
+    shape="round"
+    color="main-yellow"
+  >
     <label style="color: #000" class="ion-text-center">Voir menu</label>
   </ion-button>
 </ion-fab>

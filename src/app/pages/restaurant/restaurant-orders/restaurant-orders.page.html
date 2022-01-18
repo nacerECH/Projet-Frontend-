@@ -1,143 +1,38 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/restaurant"></ion-back-button>
+      <ion-back-button defaultHref="client"></ion-back-button>
     </ion-buttons>
     <ion-title>Commandes</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="orders">
   <ion-list class="ion-padding-vertical">
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Commande<span class="num"> N:152</span> </span>
-
-        <span class="name">Restaurant: <b> Pollos Her</b> </span>
-        <br />
-
-        <span class="name">La date : <b> 20/1/2022</b> </span>
-
-        <span class="value">35.7<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Commande<span class="num"> N:152</span> </span>
-
-        <span class="name">Restaurant: <b> Pollos Her</b> </span>
-        <br />
-
-        <span class="name">La date : <b> 20/1/2022</b> </span>
-
-        <span class="value">35.7<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Commande<span class="num"> N:152</span> </span>
-
-        <span class="name">Restaurant: <b> Pollos Her</b> </span>
-        <br />
-
-        <span class="name">La date : <b> 20/1/2022</b> </span>
-
-        <span class="value">35.7<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Commande<span class="num"> N:152</span> </span>
-
-        <span class="name">Restaurant: <b> Pollos Her</b> </span>
-        <br />
-
-        <span class="name">La date : <b> 20/1/2022</b> </span>
-
-        <span class="value">35.7<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Commande<span class="num"> N:152</span> </span>
-
-        <span class="name">Restaurant: <b> Pollos Her</b> </span>
-        <br />
-
-        <span class="name">La date : <b> 20/1/2022</b> </span>
-
-        <span class="value">35.7<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Commande<span class="num"> N:152</span> </span>
-
-        <span class="name">Restaurant: <b> Pollos Her</b> </span>
-        <br />
-
-        <span class="name">La date : <b> 20/1/2022</b> </span>
-
-        <span class="value">35.7<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Commande<span class="num"> N:152</span> </span>
-
-        <span class="name">Restaurant: <b> Pollos Her</b> </span>
-        <br />
-
-        <span class="name">La date : <b> 20/1/2022</b> </span>
-
-        <span class="value">35.7<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Commande<span class="num"> N:152</span> </span>
-
-        <span class="name">Restaurant: <b> Pollos Her</b> </span>
-        <br />
-
-        <span class="name">La date : <b> 20/1/2022</b> </span>
-
-        <span class="value">35.7<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Commande<span class="num"> N:152</span> </span>
-
-        <span class="name">Restaurant: <b> Pollos Her</b> </span>
-        <br />
-
-        <span class="name">La date : <b> 20/1/2022</b> </span>
-
-        <span class="value">35.7<span>DH</span></span>
-      </article>
-    </ion-item>
-    <ion-item class="ion-no-padding" lines="none">
-      <article class="list-item">
-        <img src="assets/hamburger.jpg" alt="" class="picture" />
-        <span class="name">Commande<span class="num"> N:152</span> </span>
-
-        <span class="name">Restaurant: <b> Pollos Her</b> </span>
-        <br />
-
-        <span class="name">La date : <b> 20/1/2022</b> </span>
-
-        <span class="value">35.7<span>DH</span></span>
-      </article>
+    <ion-item
+      *ngFor="let order of orders; let i = index"
+      (click)="navigateRestaurant(result.id)"
+      class="new ion-no-padding"
+      lines="none"
+    >
+      <ion-avatar style="width: 23vw; height: 23vw" class="ion-margin-end">
+        <img [src]="order.plat.images[0].uri" alt="" />
+      </ion-avatar>
+      <ion-label>
+        <h3 class="name">
+          {{ order.client.user.first_name+" "+order.client.user.last_name }}
+        </h3>
+        <p class="info">{{ order.plat.nom }}</p>
+        <p class="date ion-text-wrap">{{ order.date}}</p>
+        <p class="date ion-text-wrap">Tel :{{ order.telephone}}</p>
+      </ion-label>
+      <ion-label
+        style="align-self: flex-end"
+        slot="end"
+        class="ion-no-margin ion-margin-start total"
+      >
+        Total : {{ order.total }}Dhs
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

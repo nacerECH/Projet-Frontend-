@@ -6,30 +6,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen="true">
+<ion-content *ngIf="plat" fullscreen="true">
   <ion-slides class="" pager="true">
-    <ion-slide>
+    <ion-slide *ngFor="let image of plat.images; let i = index">
       <ion-item lines="none">
-        <ion-img
-          src="assets/side-view-pizza-with-chopped-pepper-board-cookware(1).jpg"
-        ></ion-img>
-      </ion-item>
-    </ion-slide>
-    <ion-slide>
-      <ion-item lines="none">
-        <ion-img src="assets/pexels-pixabay-357756.jpg"></ion-img>
-      </ion-item>
-    </ion-slide>
-    <ion-slide>
-      <ion-item lines="none">
-        <ion-img src="assets/pexels-nadezhda-moryak-4409273.jpg"></ion-img>
+        <ion-img [src]="image.uri"></ion-img>
       </ion-item>
     </ion-slide>
   </ion-slides>
   <div class="details-content">
     <header class="meal-name ion-margin-top">
       <ion-item lines="none" class="ion-margin-horizontal">
-        <label class="ion-no-margin ion-text-center" slot="start">Pizza</label>
+        <label class="ion-no-margin ion-text-center" slot="start"
+          >{{ plat.nom }}</label
+        >
         <div slot="end">
           <ion-button
             (click)="decrement()"
@@ -52,17 +42,22 @@
       </ion-item>
     </header>
     <ion-item class="description ion-padding" lines="none">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-      repudiandae alias praesentium consequuntur, nihil deserunt consequatur
-      vitae numquam minus delectus, dignissimos, nam cupiditate illum placeat
-      eius neque quo dolor aspernatur?
+      {{ plat.description }}
     </ion-item>
     <div class="accompat">
       <header class="ion-text-start ion-margin-start">Accompagnants :</header>
-      <ion-list class="ion-padding" *ngIf="accompagnements.length !== 0">
+      <ion-list
+        class="ion-padding-vertical ion-padding-horizontal-sm"
+        *ngIf="plat.accompagnants.length !== 0"
+      >
         <app-commande-accompagnement
-          *ngFor="let acc of accompagnements; let i = index"
-          [accompagnement]="acc"
+          *ngFor="let acc of plat.accompagnants; let i = index"
+          [accompagnement]="{
+            id : acc.id,
+            nom : acc.nom,
+            prix: acc.prix,
+            quantity: 0
+          }"
           (accompagnementChange)="handleChanges($event)"
         ></app-commande-accompagnement>
       </ion-list>
@@ -114,7 +109,7 @@
     </form>
   </div>
 
-  <ion-fab vertical="bottom" slot="fixed">
+  <ion-fab class="buy" vertical="bottom" slot="fixed">
     <ion-button
       (click)="toggleForm()"
       *ngIf="isBuyClicked; else cancel"
@@ -135,5 +130,14 @@
         <label class="price ion-text-end"> {{ this.total }} MAD </label>
       </ion-button>
     </ng-template>
+  </ion-fab>
+  <ion-fab class="heart" vertical="top" slot="fixed">
+    <ion-fab-button>
+      <ion-icon
+        [ngStyle]="{'color': (isLiked) ? 'red' : '#000'}"
+        [name]="isLiked?'heart':'heart-outline'"
+        (click)="toggle()"
+      ></ion-icon>
+    </ion-fab-button>
   </ion-fab>
 </ion-content>

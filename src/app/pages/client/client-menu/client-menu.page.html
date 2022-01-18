@@ -3,26 +3,16 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/restaurant"></ion-back-button>
     </ion-buttons>
-    <ion-title>Catalogue</ion-title>
+    <ion-title>{{ this.menus?menus.nom:"empty" }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding-vertical">
-  <ion-fab
-    [routerLink]="['../add-category']"
-    vertical="bottom"
-    horizontal="end"
-    slot="fixed"
-  >
-    <ion-fab-button color="main-yellow">
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
   <ion-grid *ngIf="menus">
     <ion-row class="">
       <ion-col *ngFor="let menu of menus.menus; let i = index" size="6">
         <ion-card
-          [routerLink]="['/restaurant/plats',menu.id]"
+          [routerLink]="['/client/plats',menu.id]"
           class="ion-no-margin"
         >
           <ion-card-content class="ion-no-padding">

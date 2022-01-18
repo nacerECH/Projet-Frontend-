@@ -6,97 +6,35 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen="true">
+<ion-content *ngIf="plat" fullscreen="true">
   <ion-slides class="" pager="true">
-    <ion-slide>
+    <ion-slide *ngFor="let image of plat.images; let i = index">
       <ion-item lines="none">
-        <ion-img
-          src="assets/side-view-pizza-with-chopped-pepper-board-cookware(1).jpg"
-        ></ion-img>
-      </ion-item>
-    </ion-slide>
-    <ion-slide>
-      <ion-item lines="none">
-        <ion-img src="assets/pexels-pixabay-357756.jpg"></ion-img>
-      </ion-item>
-    </ion-slide>
-    <ion-slide>
-      <ion-item lines="none">
-        <ion-img src="assets/pexels-nadezhda-moryak-4409273.jpg"></ion-img>
+        <ion-img [src]="image.uri"></ion-img>
       </ion-item>
     </ion-slide>
   </ion-slides>
   <div class="details-content">
     <header class="meal-name ion-margin-top">
-      <h1 class="ion-no-margin ion-text-center">Pizza</h1>
+      <h1 class="ion-no-margin ion-text-center">{{ plat.nom }}</h1>
     </header>
     <ion-item class="description ion-padding" lines="none">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-      repudiandae alias praesentium consequuntur, nihil deserunt consequatur
-      vitae numquam minus delectus, dignissimos, nam cupiditate illum placeat
-      eius neque quo dolor aspernatur?
+      {{ plat.description }}
     </ion-item>
     <div class="accompat">
       <header class="ion-text-start ion-margin-start">Accompagnants :</header>
-      <ion-list class="ion-padding" *ngIf="accompagnements.length !== 0">
-        <app-commande-accompagnement
-          *ngFor="let acc of accompagnements; let i = index"
-          [accompagnement]="acc"
-          (accompagnementChange)="handleChanges($event)"
-        ></app-commande-accompagnement>
+      <ion-list class="ion-padding" *ngIf="plat.accompagnants.length !== 0">
+        <ion-item
+          *ngFor="let acc of plat.accompagnants; let i = index"
+          lines="none"
+          class="ion-padding-horizontal accompat-elt"
+        >
+          <label slot="start" class="ion-no-margin accompat-elt-name"
+            >{{ acc.nom }} :
+          </label>
+          <span class="ion-no-margin price" slot="end">{{ acc.prix }}Dhs</span>
+        </ion-item>
       </ion-list>
     </div>
   </div>
-
-  <div class="ion-no-padding ion-margin-bottom form">
-    <form [formGroup]="ionicForm" novalidate (ngSubmit)="submitForm()">
-      <ion-item>
-        <ion-label color="grey-text-color" position="floating"
-          >Adresse</ion-label
-        >
-        <ion-input formControlName="adresse" type="text"> </ion-input>
-        <span
-          class="error"
-          *ngIf="isSubmitted && errorControl.adresse.errors?.required"
-        >
-          L'adresse est obligatoire
-        </span>
-      </ion-item>
-      <ion-item>
-        <ion-label color="grey-text-color" position="floating"
-          >Telephone</ion-label
-        >
-        <ion-input formControlName="phone" type="text"> </ion-input>
-        <span
-          class="error"
-          *ngIf="isSubmitted && errorControl.phome.errors?.required"
-        >
-          Le numero de telephone est obligatoire
-        </span>
-      </ion-item>
-      <ion-row class="ion-margin-vertical">
-        <ion-col
-          style="display: flex"
-          class="ion-justify-content-center ion-align-items-center"
-        >
-          <ion-button
-            class="ion-text-capitalize ion-no-margin submit"
-            type="submit"
-            color="main-yellow"
-            expand="block"
-            shape="round"
-            strong="true"
-            >Ajouter</ion-button
-          >
-        </ion-col>
-      </ion-row>
-    </form>
-  </div>
-
-  <ion-fab vertical="bottom" slot="fixed">
-    <ion-button expand="full" shape="round" color="main-yellow">
-      <label class="ion-text-start">Acheter</label>
-      <label class="price ion-text-end"> {{ this.total }} MAD </label>
-    </ion-button>
-  </ion-fab>
 </ion-content>

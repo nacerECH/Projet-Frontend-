@@ -61,7 +61,10 @@ export class ClientRegisterPage implements OnInit {
           this.storageService
             .store(AppConstants.auth, res.data)
             .then(() => {
-              this.router.navigate(['client']);
+              // this.router.navigate(['client']);
+              this.router.navigateByUrl('client', {
+                replaceUrl: true
+              });
             });
         } else {
           this.toastService.presentToast(

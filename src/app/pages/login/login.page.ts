@@ -51,10 +51,16 @@ export class LoginPage implements OnInit {
           // Storing the User data.
           this.storageService.store(AppConstants.auth, res.data);
           if (res.data.role === 'clt') {
-            this.router.navigate(['client']);
+            // this.router.navigate(['client']);
+            this.router.navigateByUrl('client', {
+              replaceUrl: true
+            });
           }
           else {
-            this.router.navigate(['restaurant']);
+            // this.router.navigate(['restaurant']);
+            this.router.navigateByUrl('restaurant', {
+              replaceUrl: true
+            });
           }
         } else {
           console.log('incorrect password.');

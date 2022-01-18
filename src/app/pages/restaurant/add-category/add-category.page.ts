@@ -211,7 +211,7 @@ export class AddCategoryPage implements OnInit {
       })
     ).subscribe((res: any) => {
       if (res.success) {
-        // this.router.navigate(['home']);
+        this.router.navigate(['/restaurant/menu']);
         console.log(res);
 
       }

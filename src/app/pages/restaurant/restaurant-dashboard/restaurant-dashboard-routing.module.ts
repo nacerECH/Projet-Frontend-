@@ -26,12 +26,12 @@ const routes: Routes = [
       .then(m => m.RestaurantMenuPageModule)
   },
   {
-    path: 'plats',
+    path: 'plats/:id',
     loadChildren: () => import('../restaurant-plats/restaurant-plats.module')
       .then(m => m.RestaurantPlatsPageModule)
   },
   {
-    path: 'plats-details',
+    path: 'plats-details/:id',
     loadChildren: () => import('../restaurant-plats-details/restaurant-plats-details.module')
       .then(m => m.RestaurantPlatsDetailsPageModule)
   },
@@ -56,7 +56,7 @@ const routes: Routes = [
       .then(m => m.RestaurantPendingPagePageModule)
   },
   {
-    path: 'restaurant-plats-edit',
+    path: 'restaurant-plats-edit/:id',
     loadChildren: () => import('../../restaurant/restaurant-plats-edit/restaurant-plats-edit.module')
       .then(m => m.RestaurantPlatsEditPageModule)
   },

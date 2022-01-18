@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { AppConstants } from 'src/app/config/app-constants';
@@ -6,15 +6,16 @@ import { LocalFile } from 'src/app/interfaces/local-file';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { ToastService } from 'src/app/services/toast.service';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { finalize } from 'rxjs/operators';
+import { HttpParams } from '@angular/common/http';
 @Component({
   selector: 'app-restaurant-plats-edit',
   templateUrl: './restaurant-plats-edit.page.html',
   styleUrls: ['./restaurant-plats-edit.page.scss'],
 })
-export class RestaurantPlatsEditPage implements OnInit {
+export class RestaurantPlatsEditPage implements OnInit, OnDestroy {
 
   ionicForm: FormGroup;
   isSubmitted = false;
@@ -26,7 +27,10 @@ export class RestaurantPlatsEditPage implements OnInit {
     { name: 'Coca', value: '4' },
     { name: 'frite', value: '5' }
   ];
-
+  // data: any;
+  id: any;
+  dataSubscription: any;
+  acc: any;
 
 
   constructor(
@@ -35,14 +39,16 @@ export class RestaurantPlatsEditPage implements OnInit {
     private toastService: ToastService,
     public formBuilder: FormBuilder,
     private router: Router,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private activatedRoute: ActivatedRoute,
+
   ) { }
 
   get errorControl() {
     return this.ionicForm.controls;
   };
 
-  ngOnInit() {
+  async ngOnInit() {
     this.ionicForm = this.formBuilder.group({
       titre: ['', [Validators.required]],
       image: ['', Validators.required],
@@ -51,9 +57,35 @@ export class RestaurantPlatsEditPage implements OnInit {
       promoPrice: [null, [Validators.pattern('[+-]?([0-9]*[.])?[0-9]+'), Validators.required]],
       checkArray: this.formBuilder.array([])
     });
-
-    this.emptyDirectory();
     this.loadFiles();
+    this.emptyDirectory();
+    this.getAcc();
+  }
+  async getAcc() {
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Chargement en cours...',
+    });
+    await loading.present();
+    return (await (this.httpService.authGet(AppConstants.getAcc))).pipe(
+      finalize(() => {
+        loading.dismiss();
+      })
+    ).subscribe((res: any) => {
+      if (res.success) {
+        console.log(res);
+        console.log();
+        this.acc = res.data.accompagnements;
+        console.log(this.acc);
+
+      }
+    },
+      (error: any) => {
+        this.toastService.presentToast('Pas de resultat');
+        console.log(error);
+        console.log('HAMZA' + JSON.stringify(error));
+        console.log('Network Issue.');
+      });
   }
 
   emptyDirectory() {
@@ -212,6 +244,13 @@ export class RestaurantPlatsEditPage implements OnInit {
   // eslint-disable-next-line @typescript-eslint/member-ordering
   async startUpload(files: LocalFile[]) {
 
+    this.dataSubscription = await this.activatedRoute.paramMap.subscribe(async params => {
+      console.log(params.get('id'));
+      console.log(params);
+      this.id = params.get('id');
+    }, error => {
+      console.log(error);
+    });
     const formData = new FormData();
     // eslint-disable-next-line guard-for-in
     for (let index in files) {
@@ -220,7 +259,7 @@ export class RestaurantPlatsEditPage implements OnInit {
       formData.append('file[]', blob, files[index].name);
 
     }
-
+    formData.append('id', this.id);
     formData.append('nom', this.ionicForm.controls.titre.value);
     formData.append('description', this.ionicForm.controls.description.value);
     formData.append('price', this.ionicForm.controls.price.value);
@@ -247,7 +286,11 @@ export class RestaurantPlatsEditPage implements OnInit {
       })
     ).subscribe((res: any) => {
       if (res.success) {
-        // this.router.navigate(['home']);
+        this.emptyDirectory();
+        this.router.navigateByUrl('/restaurant/plats/' + this.id, {
+          replaceUrl: true
+        });
+        // this.router.navigate(['/restaurant/plats', this.id]);
         console.log(res);
 
       }
@@ -274,5 +317,9 @@ export class RestaurantPlatsEditPage implements OnInit {
         i++;
       });
     }
+  }
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
   }
 }
