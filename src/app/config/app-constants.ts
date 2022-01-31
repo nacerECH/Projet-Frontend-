@@ -13,6 +13,8 @@ export class AppConstants {
   public static readonly getRestaurants = 'restaurants';
   public static readonly getAcc = 'accompagnements';
   public static readonly likes = 'likes';
+  public static readonly statistics = 'statistics';
+  public static readonly reclamations = 'reclamations';
 
 
 

@@ -1,0 +1,25 @@
+ion-header {
+  height: 8vh;
+  display: flex;
+  align-items: flex-end;
+  ion-title {
+    font-size: 1.1rem;
+  }
+}
+ion-segment {
+  background-color: #fff;
+  height: 7vh;
+  border-radius: 0;
+  ion-segment-button {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #000;
+    // --color-checked: var(--ion-color-main-yellow);
+    --background: #fff;
+    --border-radius: 0;
+    --background-checked: var(--ion-color-light-grey-color);
+    // --background-activated: var(--ion-color-light-grey-color);
+    height: 100%;
+    --indicator-color: transparent !important; /* this solution */
+  }
+}

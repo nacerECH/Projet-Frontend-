@@ -1,11 +1,52 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>restaurant-statistics</ion-title>
+    <ion-buttons style="z-index: 100" slot="start">
+      <ion-back-button defaultHref="/restaurant"></ion-back-button>
+    </ion-buttons>
+    <ion-title
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      "
+      >Statistics</ion-title
+    >
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
-  <app-statistic-component>  </app-statistic-component>
-
+  <ion-segment (ionChange)="segmentChanged($event)" value="week">
+    <ion-segment-button value="week">
+      <ion-label>Semaine</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="month">
+      <ion-label>Mois</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="selectedSegment === 'week'">
+    <div id="weekCommandes"></div>
+    <div id="weekAmount"></div>
+    <ion-item lines="none">
+      <ion-label>
+        Revenue : {{ this.statistics?this.statistics.week.totalMoney:'' }}
+      </ion-label>
+      <ion-label>
+        Total : {{ this.statistics?this.statistics.week.totalCommandes:'' }}
+      </ion-label>
+    </ion-item>
+  </div>
+  <div *ngIf="selectedSegment === 'month'">
+    <div id="monthCommandes"></div>
+    <div id="monthAmount"></div>
+    <ion-item lines="none">
+      <ion-label>
+        Revenue : {{ this.statistics?this.statistics.month.totalMoney:'' }}
+      </ion-label>
+      <ion-label>
+        Total : {{ this.statistics?this.statistics.month.totalCommandes:'' }}
+      </ion-label>
+    </ion-item>
+  </div>
 </ion-content>

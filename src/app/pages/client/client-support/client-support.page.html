@@ -1,22 +1,80 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>client-support</ion-title>
+    <ion-buttons style="z-index: 100" slot="start">
+      <ion-back-button defaultHref="/restaurant"></ion-back-button>
+    </ion-buttons>
+    <ion-title
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      "
+      >Reclamation</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding-vertical">
+  <ion-grid class="ion-margin-top">
+    <ion-row class="ion-align-items-center ion-padding-horizontal">
+      <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Sujet</ion-label
+          >
+          <ion-input
+            formControlName="sujet"
+            id="sujet"
+            name="sujet"
+            type="text"
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.sujet.errors?.required"
+          >
+            Le Nom de restaurant est obligatoire
+          </span>
+        </ion-item>
 
-<div style="margin: 6%; margin-top: 25%;" >
-  <form>
-    <ion-input name="name" type="text" class="feedback-input" placeholder="Name" ></ion-input>
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Description</ion-label
+          >
+          <ion-textarea
+            formControlName="description"
+            id="description"
+            name="description"
+            auto-grow="true"
+            rows="5"
+          ></ion-textarea>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.description.errors?.required"
+          >
+            La Description de la restaurante est obligatoire
+          </span>
+        </ion-item>
 
-    <ion-input name="email" type="text" class="feedback-input" placeholder="Email" ></ion-input>
-
-    <ion-textarea id="tx" name="text" class="feedback-input" placeholder="Message"></ion-textarea>
-
-    <input type="submit" value="SUBMIT"/>
-
-    </form>
-
-  </div>
+        <ion-row class="ion-margin-vertical">
+          <ion-col
+            style="display: flex"
+            class="ion-justify-content-center ion-align-items-center"
+          >
+            <ion-button
+              class="ion-text-capitalize submit"
+              type="submit"
+              color="main-yellow"
+              expand="block"
+              shape="round"
+              strong="true"
+              >Reclamer</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-row>
+  </ion-grid>
 </ion-content>

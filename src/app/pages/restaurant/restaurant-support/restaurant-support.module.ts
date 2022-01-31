@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +13,10 @@ import { RestaurantSupportPage } from './restaurant-support.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    RestaurantSupportPageRoutingModule
+    RestaurantSupportPageRoutingModule,
+    ReactiveFormsModule,
+
   ],
   declarations: [RestaurantSupportPage]
 })
-export class RestaurantSupportPageModule {}
+export class RestaurantSupportPageModule { }

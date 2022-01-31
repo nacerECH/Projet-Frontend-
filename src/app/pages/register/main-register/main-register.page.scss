@@ -12,18 +12,21 @@ ion-content {
   height: 90vh;
 
   ion-grid {
-    margin-top: 15vh;
-    margin-bottom: 15vh;
-    height: 60vh;
+    height: 100%;
+    ion-row {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+    }
     ion-col {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 70vw;
       ion-card {
+        width: 80%;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        height: 100%;
-        width: 70vw;
         --background: var(--ion-color-main-yellow);
 
         &:hover {

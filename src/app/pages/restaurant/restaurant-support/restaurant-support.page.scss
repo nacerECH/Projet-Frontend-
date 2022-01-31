@@ -1,42 +1,26 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+ion-grid {
+  height: 100%;
 
-
-.feedback-input {
-  color:#000000;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight:500;
-  font-size: 18px;
-  border-radius: 5px;
-  line-height: 22px;
-  background-color: transparent;
-  border:2px solid #ffd243;
-  transition: all 0.3s;
-  padding: 13px;
-  margin-bottom: 15px;
-  width:100%;
-  box-sizing: border-box;
-  outline:0;
+  ion-row {
+    height: 100%;
+    form {
+      width: 100%;
+    }
+  }
 }
-
-
-#tx {
-  height: 150px;
-  line-height: 150%;
-  resize:vertical;
+ion-item {
+  --padding-bottom: 10px;
 }
-
-[type="submit"] {
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  width: 100%;
-  background:#ffd243;
-  border-radius:5px;
-  border:0;
-  cursor:pointer;
-  color:white;
-  font-size:16px;
-  padding-top:10px;
-  padding-bottom:10px;
-  transition: all 0.3s;
-  margin-top:-4px;
-  font-weight:700;
+ion-button.submit {
+  width: 80%;
+  margin-top: 10%;
+  margin-bottom: 20%;
+  --border-color: #000;
+  --border-radius: 8px;
+  --border-style: solid;
+  --border-width: 2px;
+}
+.error {
+  color: red;
+  font-size: 0.8rem;
 }
