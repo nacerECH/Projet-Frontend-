@@ -1,9 +1,19 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons style="z-index: 100" slot="start">
       <ion-back-button defaultHref="/client"></ion-back-button>
     </ion-buttons>
-    <ion-title>Near by</ion-title>
+    <ion-title
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      "
+      >Near by</ion-title
+    >
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar
@@ -27,7 +37,7 @@
       lines="none"
     >
       <ion-avatar style="width: 23vw; height: 23vw" class="ion-margin-end">
-        <img src="assets/restau.jpg" alt="" />
+        <img [src]="result.images[0].uri" alt="" />
       </ion-avatar>
       <ion-label>
         <h3 class="name">{{ result.nom }}</h3>

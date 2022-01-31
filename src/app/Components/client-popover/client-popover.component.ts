@@ -11,7 +11,7 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./client-popover.component.scss'],
 })
 export class ClientPopoverComponent implements OnInit {
-
+  data: any;
   constructor(
     public popoverController: PopoverController,
     private storageService: StorageService,
@@ -19,7 +19,14 @@ export class ClientPopoverComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() { }
+  async ngOnInit() {
+    await this.storageService
+      .get(AppConstants.auth)
+      .then(res => {
+        this.data = res;
+        console.log(this.data);
+      });
+  }
 
   close() {
     this.popoverController.dismiss();
@@ -43,4 +50,12 @@ export class ClientPopoverComponent implements OnInit {
     );
   }
 
+  async ionViewWillEnter() {
+    await this.storageService
+      .get(AppConstants.auth)
+      .then(res => {
+        this.data = res;
+        console.log(this.data);
+      });
+  }
 }

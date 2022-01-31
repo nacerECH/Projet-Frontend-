@@ -142,6 +142,29 @@
             L'adresse email doit avoir une fromat valide
           </span>
         </ion-item>
+        <ion-item lines="full" class="ionic-margin-bottom">
+          <ion-label color="grey-text-color" position="floating"
+            >Telephone</ion-label
+          >
+          <ion-input
+            formControlName="telephone"
+            id="telephone"
+            name="telephone"
+            type="text"
+          ></ion-input>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.telephone.errors?.required"
+          >
+            Le numero telphone est obligatoire
+          </span>
+          <span
+            class="error"
+            *ngIf="isSubmitted && errorControl.telephone.errors?.minLength"
+          >
+            Minimum 10 caracteres
+          </span>
+        </ion-item>
 
         <ion-item lines="full" class="ionic-margin-bottom">
           <ion-label color="grey-text-color" position="floating"

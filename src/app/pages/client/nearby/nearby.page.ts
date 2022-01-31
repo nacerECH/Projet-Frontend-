@@ -147,8 +147,8 @@ export class NearbyPage implements OnInit {
       CapacitorGoogleMaps.addMarker({
         latitude: coords.coords.latitude,
         longitude: coords.coords.longitude,
-        title: 'My castle of loneliness',
-        snippet: 'Come and find me',
+        title: 'My Position',
+        snippet: '',
         // url: './assets/cooking.svg'
       });
       CapacitorGoogleMaps.setCamera({
@@ -174,7 +174,7 @@ export class NearbyPage implements OnInit {
           CapacitorGoogleMaps.addMarker({
             latitude: parseFloat(rest.latitude),
             longitude: parseFloat(rest.longitude),
-            title: rest.nom,
+            title: '#' + rest.id + ' ' + rest.nom,
             snippet: rest.adresse,
             // url: './assets/cooking.svg'
           });

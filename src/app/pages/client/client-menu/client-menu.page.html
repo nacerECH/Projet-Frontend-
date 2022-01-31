@@ -1,9 +1,19 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons style="z-index: 100" slot="start">
       <ion-back-button defaultHref="/restaurant"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ this.menus?menus.nom:"empty" }}</ion-title>
+    <ion-title
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      "
+      >{{ this.menus?menus.nom:"empty" }}</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 

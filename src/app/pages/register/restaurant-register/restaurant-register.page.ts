@@ -49,6 +49,7 @@ export class RestaurantRegisterPage implements OnInit {
       description: ['', [Validators.required]],
       adresse: ['', [Validators.required]],
       ville: ['', [Validators.required]],
+      telephone: ['', [Validators.required, Validators.minLength(10)]],
       longitude: ['', [Validators.pattern('[+-]?([0-9]*[.])?[0-9]+'), Validators.required]],
       latitude: ['', [Validators.pattern('[+-]?([0-9]*[.])?[0-9]+'), Validators.required]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
@@ -292,6 +293,7 @@ export class RestaurantRegisterPage implements OnInit {
     formData.append('longitude', this.ionicForm.controls.longitude.value);
     formData.append('latitude', this.ionicForm.controls.latitude.value);
     formData.append('email', this.ionicForm.controls.email.value);
+    formData.append('telephone', this.ionicForm.controls.telephone.value);
     formData.append('password', this.ionicForm.controls.password.value);
     formData.append('confirmPassword', this.ionicForm.controls.confirmPassword.value);
     formData.append('image', this.ionicForm.controls.image.value);

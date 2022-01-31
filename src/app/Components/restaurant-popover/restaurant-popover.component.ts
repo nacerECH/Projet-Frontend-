@@ -11,7 +11,7 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./restaurant-popover.component.scss'],
 })
 export class RestaurantPopoverComponent implements OnInit {
-
+  data: any;
   constructor(
     public popoverController: PopoverController,
     private storageService: StorageService,
@@ -19,8 +19,14 @@ export class RestaurantPopoverComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() { }
-
+  async ngOnInit() {
+    await this.storageService
+      .get(AppConstants.auth)
+      .then(res => {
+        this.data = res;
+        console.log(this.data);
+      });
+  }
   close() {
     this.popoverController.dismiss();
   }
