@@ -23,6 +23,7 @@
       *ngFor="let order of orders; let i = index"
       class="new ion-no-padding"
       lines="none"
+      [routerLink]="['/restaurant/order-details',order.id]"
     >
       <ion-avatar style="width: 23vw; height: 23vw" class="ion-margin-end">
         <img [src]="order.plat.images[0].uri" alt="" />

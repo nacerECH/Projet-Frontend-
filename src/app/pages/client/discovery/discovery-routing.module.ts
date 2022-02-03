@@ -48,6 +48,10 @@ const routes: Routes = [
     path: 'plats/:id',
     loadChildren: () => import('../plats-list/plats-list.module').then(m => m.PlatsListPageModule)
   },
+  {
+    path: 'order-details/:id',
+    loadChildren: () => import('../order-details/order-details.module').then( m => m.OrderDetailsPageModule)
+  }
 
 
 ];

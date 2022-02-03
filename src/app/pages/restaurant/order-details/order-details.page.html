@@ -1,0 +1,68 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/client"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="commande" fullscreen="true">
+  <ion-slides class="" pager="true">
+    <ion-slide *ngFor="let image of commande.plat.images; let i = index">
+      <ion-item lines="none">
+        <ion-img [src]="image.uri"></ion-img>
+      </ion-item>
+    </ion-slide>
+  </ion-slides>
+  <div class="details-content">
+    <header class="meal-name ion-margin-top">
+      <h1 class="ion-no-margin ion-text-center">{{ commande.plat.nom }}</h1>
+    </header>
+    <div class="description ion-padding" lines="none">
+
+     <ion-grid>
+       <ion-row>
+         <ion-col> <b style="font-family: Bahnschrift , sans-seri;">La somme : </b> </ion-col>  <ion-col> {{ commande.total }}  </ion-col>
+       </ion-row>
+       <ion-row>
+        <ion-col>  <b style="font-family: Bahnschrift , sans-seri;" >La Quantite : </b>  </ion-col>  <ion-col> {{ commande.quantity }} </ion-col>
+      </ion-row>
+       <ion-row>
+        <ion-col>  <b  style="font-family: Bahnschrift , sans-seri;" >La Date : </b>  </ion-col>  <ion-col style="font-size: small;">  {{ commande.date }} </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>  <b  style="font-family: Bahnschrift , sans-seri;" > Client : </b>  </ion-col>   <ion-col> <span > {{ commande.client.user.first_name }}  {{ commande.client.user.last_name }} </span>   </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>  <b  style="font-family: Bahnschrift , sans-seri;" > Email client : </b>  </ion-col>   <ion-col> <span > {{ commande.client.user.email }} </span>   </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>  <b  style="font-family: Bahnschrift , sans-seri;" > Tel : </b>  </ion-col>   <ion-col> <span > {{ commande.client.telephone }} </span>   </ion-col>
+      </ion-row>
+
+
+     </ion-grid>
+
+ </div>
+    <ion-item class="description ion-padding" style="font-family: Bahnschrift, sans-seri;" lines="none">
+     <b > Description :  </b> {{ commande.plat.description }}
+    </ion-item>
+    <div class="accompat">
+      <header class="ion-text-start ion-margin-start"> <U> Accompagnants : </U> </header>
+      <ion-list class="ion-padding" *ngIf="commande.plat.accompagnants.length !== 0">
+        <ion-item
+          *ngFor="let acc of commande.plat.accompagnants; let i = index"
+          lines="none"
+          class="ion-padding-horizontal accompat-elt"
+        >
+          <label slot="start" class="ion-no-margin accompat-elt-name"
+            >{{ acc.nom }} :
+          </label>
+          <span class="ion-no-margin price" slot="end">{{ acc.prix }}Dhs</span>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
+

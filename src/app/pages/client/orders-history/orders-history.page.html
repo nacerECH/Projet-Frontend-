@@ -21,9 +21,10 @@
   <ion-list class="ion-padding-vertical">
     <ion-item
       *ngFor="let order of orders; let i = index"
-      (click)="navigateRestaurant(result.id)"
+
       class="new ion-no-padding"
       lines="none"
+      [routerLink]="['/client/order-details',order.id]"
     >
       <ion-avatar style="width: 23vw; height: 23vw" class="ion-margin-end">
         <img [src]="order.plat.images[0].uri" alt="" />

@@ -16,6 +16,10 @@ const routes: Routes = [
       .then(m => m.RestaurantOrdersPageModule)
   },
   {
+    path: 'order-details/:id',
+    loadChildren: () => import('../order-details/order-details.module').then( m => m.OrderDetailsPageModule)
+  },
+  {
     path: 'restaurant-support',
     loadChildren: () => import('../restaurant-support/restaurant-support.module')
       .then(m => m.RestaurantSupportPageModule)

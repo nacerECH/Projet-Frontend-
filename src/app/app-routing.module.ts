@@ -28,7 +28,10 @@ const routes: Routes = [
       .then(m => m.RestaurantDashboardPageModule),
     canLoad: [RestaurantGuard],
 
-  },
+  }
+
+
+
 
 
 
