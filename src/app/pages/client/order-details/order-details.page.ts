@@ -42,7 +42,7 @@ export class OrderDetailsPage implements OnInit, OnDestroy {
 
 
 
-async getCommande(id) {
+  async getCommande(id) {
 
 
     const loading = await this.loadingCtrl.create({
@@ -70,6 +70,9 @@ async getCommande(id) {
 
   ngOnDestroy() {
     this.dataSubscription.unsubscribe();
+  }
+  formatNumber(data: string) {
+    return parseInt(data, 10);
   }
 
 }

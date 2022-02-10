@@ -22,6 +22,14 @@
       {{ plat.description }}
     </ion-item>
     <div class="accompat">
+      <header class="ion-text-start ion-margin-start">prix :</header>
+      <ion-item lines="none" class="ion-padding-horizontal">
+        <label slot="start" style="font-weight: 600" class="ion-no-margin"
+          >{{ plat.price }} :
+        </label>
+      </ion-item>
+    </div>
+    <div class="accompat">
       <header class="ion-text-start ion-margin-start">Accompagnants :</header>
       <ion-list class="ion-padding" *ngIf="plat.accompagnants.length !== 0">
         <ion-item
