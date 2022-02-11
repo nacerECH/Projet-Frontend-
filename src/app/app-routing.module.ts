@@ -9,6 +9,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
     canLoad: [HomeGuard],
+    canActivate: [HomeGuard],
 
   },
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     path: 'client' /**discovery */,
     loadChildren: () => import('./pages/client/discovery/discovery.module').then(m => m.DiscoveryPageModule),
     canLoad: [ClientGuard],
+    canActivate: [ClientGuard],
   },
 
   {
@@ -27,6 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/restaurant/restaurant-dashboard/restaurant-dashboard.module')
       .then(m => m.RestaurantDashboardPageModule),
     canLoad: [RestaurantGuard],
+    canActivate: [RestaurantGuard],
 
   }
 

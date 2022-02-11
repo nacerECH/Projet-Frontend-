@@ -13,9 +13,12 @@ ion-thumbnail {
 }
 
 ion-button {
-  width: 80%;
+  width: 90%;
+  height: 45px;
 }
 ion-button.yellow {
+  width: 90%;
+  height: 50px;
   margin-top: 10%;
   --border-color: #000;
   --border-radius: 20px;
@@ -23,5 +26,7 @@ ion-button.yellow {
   --border-width: 2px;
 }
 ion-button.black {
+  width: 90%;
+  height: 50px;
   --border-radius: 20px;
 }

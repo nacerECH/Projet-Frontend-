@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastService } from 'src/app/services/toast.service';
+import { finalize } from 'rxjs/operators';
+import { LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -19,7 +21,9 @@ export class LoginPage implements OnInit {
     private router: Router,
     private authService: AuthService,
     private storageService: StorageService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private loadingCtrl: LoadingController,
+
   ) { }
 
   get errorControl() {
@@ -43,8 +47,17 @@ export class LoginPage implements OnInit {
     }
   }
 
-  loginAction() {
-    this.authService.login(this.ionicForm.value).subscribe(
+  async loginAction() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Chargement en cours...',
+    });
+    await loading.present();
+
+    this.authService.login(this.ionicForm.value).pipe(
+      finalize(() => {
+        loading.dismiss();
+      })
+    ).subscribe(
       (res: any) => {
         if (res.success) {
           console.log(res);

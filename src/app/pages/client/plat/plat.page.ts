@@ -236,13 +236,13 @@ export class PlatPage implements OnInit, OnDestroy {
       params = params.append('action', 'attach');
 
     }
-    const loading = await this.loadingCtrl.create({
-      message: 'Chargement en cours...',
-    });
-    await loading.present();
+    // const loading = await this.loadingCtrl.create({
+    //   message: 'Chargement en cours...',
+    // });
+    // await loading.present();
     return (await (this.httpService.authGet(AppConstants.likes + '/' + this.id, params))).pipe(
       finalize(() => {
-        loading.dismiss();
+        // loading.dismiss();
       })
     ).subscribe((res: any) => {
       if (res.success) {

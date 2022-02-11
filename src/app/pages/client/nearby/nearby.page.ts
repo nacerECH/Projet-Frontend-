@@ -85,6 +85,8 @@ export class NearbyPage implements OnInit {
         // this.router.navigate(['home']);
         console.log(res);
         console.log('HAMZA' + JSON.stringify(res));
+        console.log('HAMZA2' + JSON.stringify(res.data.restaurants));
+
         this.restaurants = res.data.restaurants;
 
       }
@@ -144,13 +146,26 @@ export class NearbyPage implements OnInit {
     Geolocation.requestPermissions().then(async permission => {
       const coords = await Geolocation.getCurrentPosition();
 
-      CapacitorGoogleMaps.addMarker({
-        latitude: coords.coords.latitude,
-        longitude: coords.coords.longitude,
-        title: 'My Position',
-        snippet: '',
-        // url: './assets/cooking.svg'
+      // CapacitorGoogleMaps.addMarker({
+      //   latitude: coords.coords.latitude,
+      //   longitude: coords.coords.longitude,
+      //   title: 'My Position',
+      //   snippet: '/assets/1200px-Map_marker.svg.png',
+      //   // url: './assets/cooking.svg'
+      // });
+
+      CapacitorGoogleMaps.addCircle({
+        center: {
+          latitude: coords.coords.latitude,
+          longitude: coords.coords.longitude,
+        },
+        radius: 3,
+        strokeColor: '#3377ff',
+        strokeWidth: 5,
+        zIndex: 100,
+        visibility: true,
       });
+
       CapacitorGoogleMaps.setCamera({
         latitude: coords.coords.latitude,
         longitude: coords.coords.longitude,
